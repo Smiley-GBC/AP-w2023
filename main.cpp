@@ -2,7 +2,6 @@
 
 using namespace std;
 
-
 void function()
 {
 	printf("I AM A FUNCTION!!!!\n");
@@ -26,21 +25,59 @@ int main()
 	//	printf("True!\n");
 	//else
 	//	printf("False\n");
-
+	
 	// In if-blocks, only the true statement is executed.
 	// Statements are evaluated sequentially (top-down).
-	if (number == 4)
-		printf("4\n");
-	else if (number == 5)
-		printf("5\n");
-	else if (number == 6)
-		printf("6\n");
-	else if (number == 7)
-		printf("7\n");
-	else if (number == 8)
-		printf("8\n");
-	else
-		printf("Your number is not 4 or 5\n");
+	//if (number == 4)
+	//	printf("4\n");
+	//else if (number == 5)
+	//	printf("5\n");
+	//else if (number == 6)
+	//	printf("6\n");
+	//else if (number == 7)
+	//	printf("7\n");
+	//else if (number == 8)
+	//	printf("8\n");
+	//else
+	//	printf("Your number is not 4 through 8\n");
+
+	//switch (number)
+	//{
+	//	case 4:
+	//		printf("4\n");
+	//		break;
+	//
+	//	case 5:
+	//		printf("5\n");
+	//		break;
+	//
+	//	case 6:
+	//		printf("6\n");
+	//		break;
+	//
+	//	case 7:
+	//		printf("7\n");
+	//		break;
+	//
+	//	case 8:
+	//		printf("8\n");
+	//		break;
+	//
+	//	default:
+	//		printf("Your number is not 4 through 8\n");
+	//}
+
+	// You can only switch through number types (int and such)
+	//string name = "connor";
+	//if (name == "connor")
+	//	cout << "blaaah";
+	//else
+	//	cout << "naaah";
+	//switch (name)
+	//{
+	//default:
+	//	break;
+	//}
 
 	// Just like normal variables, pointers should be default-initialized.
 	// Otherwise, you get corrupted memory
