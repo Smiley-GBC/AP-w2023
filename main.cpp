@@ -4,6 +4,7 @@ using namespace std;
 
 int main()
 {
-	cout << "Hello world" << endl;
+	cout << "Welcome to advanced programming!" << endl;
+	cin.get();
 	return 0;
 }
