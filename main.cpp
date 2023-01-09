@@ -2,14 +2,57 @@
 
 using namespace std;
 
-void function()
+int intFunction()
 {
+	printf("I am a function that returns an integer!\n");
+	return 5;
+}
+
+void voidFunction()
+{
+	return;
 	printf("I AM A FUNCTION!!!!\n");
+}
+
+float add(float a, float b)
+{
+	return a + b;
 }
 
 int main()
 {
-	int number = 7;
+	//voidFunction();
+	//unsigned char byte = 0;
+	//for (int counter = 300; counter > 0; counter--)
+	//{
+	//	printf("%i\n", byte++);
+	//}
+	float c = add(1, 2);
+	printf("%f\n", c);
+
+	int counter = 0;
+	while (true)
+	{
+		counter++;
+		printf("Running!\n");
+		if (counter == 4)
+			break;
+	}
+
+	cout << sizeof (int) << endl;
+	cout << sizeof (long long) << endl;
+	cout << sizeof (float) << endl;
+	cout << sizeof (double) << endl;
+
+	float f = 1.2345f;
+	double d = 5.4321;
+
+	printf("%f %f\n", f, d);
+
+	//int result = intFunction();
+	//printf("Return value: %i\n", result);
+
+	//int number = 7;
 	//int* numberPointer = nullptr;
 	//if (numberPointer == nullptr)
 	//	numberPointer = &number;
