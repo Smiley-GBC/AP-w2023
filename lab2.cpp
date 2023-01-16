@@ -18,11 +18,21 @@ struct Package
 class PostOffice
 {
 public:
-	PostOffice(Package* packages, int packageCount)
+	void SetPackages(Package* packages, int packageCount)
 	{
 		this->packages = packages;
 		this->packageCount = packageCount;
 	}
+
+	// We must keep track of the size of our dynamic array (packages) otherwise its impossibe to figure out!
+	// For example, we need a size to determine how many times we loop when outputting each element.
+	//void PrintPackages()
+	//{
+	//	for (int i = 0; i < packageCount; i++)
+	//	{
+	//		printf("%s\n", packages[i].message.c_str());
+	//	}
+	//}
 
 	void SetAddress(const std::string& address)
 	{
@@ -43,7 +53,7 @@ private:
 class MailService
 {
 public:
-	MailService(PostOffice* postOffices, int officeCount)
+	void SetOffices(PostOffice* postOffices, int officeCount)
 	{
 		offices = postOffices;
 		count = officeCount;
@@ -79,7 +89,9 @@ int main()
 	std::cin >> packageCount;
 
 	Package* packages = new Package[packageCount];
-
-
+	PostOffice* offices = new PostOffice[officeCount];
+	offices->SetPackages(packages, packageCount);
+	MailService* services = new MailService[serviceCount];
+	services->SetOffices(offices, officeCount);
 	return 0;
 }
