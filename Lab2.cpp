@@ -27,7 +27,35 @@ struct Platform
 	int gameCount;
 };
 
+void Run();
+
+struct Test
+{
+	Test()
+	{
+		counter++;
+		number = counter;
+		cout << "Object " << number << " created" << endl;
+	}
+
+	~Test()
+	{
+		cout << "Object " << number << " destroyed" << endl;
+	}
+
+	int number;
+	static int counter;
+};
+
+int Test::counter = 0;
+
 int main()
+{
+	Run();
+	return 0;
+}
+
+void Run()
 {
 	int platformCount = 0;
 	cout << "How many consoles would you like to create?" << endl;
@@ -94,7 +122,9 @@ int main()
 				cout << "Description " << achievement.description << endl;
 				cout << "Score: " << achievement.score << endl;
 			}
+			delete[] game.achievements;
 		}
+		delete[] platform.games;
 	}
-	return 0;
+	delete[] platforms;
 }
