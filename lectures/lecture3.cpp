@@ -1,3 +1,4 @@
+///*
 #include <iostream>
 #include <string>
 #include <thread>
@@ -93,8 +94,11 @@ struct Enemy
 	}
 
 private:
+	// Friend classes give entire class access to privates
+	// (Both PrintEnemyType() and SecondFunction() can access private enemy variables).
 	friend Game;
-	//friend void Game::PrintEnemyType(Enemy enemy);
+	friend void PrintEnemyName(Enemy enemy);
+	// Friend functions can access privates as well. 
 
 	string name;
 	static string type;
@@ -103,16 +107,21 @@ private:
 	int health;
 };
 
+void PrintEnemyName(Enemy enemy)
+{
+	cout << "Enemy named " << enemy.name << endl;
+}
+
 struct Game
 {
-	void PrintEnemyName(Enemy enemy)
-	{
-		cout << "Enemy named " << enemy.name << endl;
-	}
-
 	void PrintEnemyType(Enemy enemy)
 	{
 		cout << "Enemy of type " << enemy.type << endl;
+	}
+
+	void SecondFunction(Enemy enemy)
+	{
+		cout << "Proof of concept: " << enemy.name << endl;
 	}
 };
 
@@ -121,24 +130,19 @@ int Enemy::baseHealth = 100;
 
 int main()
 {
-	// Normal objects
-	//Test t1;
-	//Test t2 = t1;
-	//
-	Test t3;
-	Test* t4 = &t3;
-
-	return 0;
-	/*Game g;
+	Game g;
 
 	Enemy enemy1;
 	Enemy enemy2;
 	Enemy enemy3;
 	Enemy enemy4;
 
+	// Static values & methods apply to *all* objects of type Enemy.
 	Enemy::SetBaseHealth(200);
 	Enemy::SetType("Undead");
+	// (All 4 enemies now have 200 base health and are now "Undead")
 
+	// Individual objects still get their own health and name.
 	enemy1.SetHealth(10);
 	enemy2.SetHealth(20);
 	enemy3.SetHealth(30);
@@ -159,8 +163,8 @@ int main()
 	cout << enemy3.Health() << endl;
 	cout << enemy4.Health() << endl;
 
-	g.PrintEnemyType(enemy1);
-	g.PrintEnemyName(enemy1);*/
+	g.PrintEnemyType(enemy1); // Friend class test
+	PrintEnemyName(enemy1);   // Friend function test
 
 	//Test test;
 	//test.SetValue(10);
@@ -184,18 +188,20 @@ int main()
 	//(*testPtr).value;
 	//testPtr->value;
 
-	/*while (true)
-	{
-		Test test;
-		std::this_thread::sleep_for(chrono::seconds(1));
-		//int* memory = new int[1024 * 1024];
-		//cout << "Memory allocated at address " << memory << endl;
-		//
-		//std::this_thread::sleep_for(chrono::seconds(1));
-		//
-		//cout << "Deleted address " << memory << endl;
-		//delete[] memory;
-	}*/
+	// Correct memory management (deleting memory variable before it goes out of scope).
+	//while (true)
+	//{
+	//	Test test;
+	//	std::this_thread::sleep_for(chrono::seconds(1));
+	//	//int* memory = new int[1024 * 1024];
+	//	//cout << "Memory allocated at address " << memory << endl;
+	//	//
+	//	//std::this_thread::sleep_for(chrono::seconds(1));
+	//	//
+	//	//cout << "Deleted address " << memory << endl;
+	//	//delete[] memory;
+	//}
 
-	//return 0;
+	return 0;
 }
+//*/

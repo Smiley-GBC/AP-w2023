@@ -13,10 +13,28 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Lectures">
+      <UniqueIdentifier>{bb27ce00-9a4f-4376-9de1-c58b191bfc30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Labs">
+      <UniqueIdentifier>{6c41fc6c-2e57-4863-b02a-8391fc13321d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="lecture3.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="labs\lab1.cpp">
+      <Filter>Labs</Filter>
+    </ClCompile>
+    <ClCompile Include="labs\lab2.cpp">
+      <Filter>Labs</Filter>
+    </ClCompile>
+    <ClCompile Include="labs\lab3.cpp">
+      <Filter>Labs</Filter>
+    </ClCompile>
+    <ClCompile Include="lectures\lecture2.cpp">
+      <Filter>Lectures</Filter>
+    </ClCompile>
+    <ClCompile Include="lectures\lecture3.cpp">
+      <Filter>Lectures</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

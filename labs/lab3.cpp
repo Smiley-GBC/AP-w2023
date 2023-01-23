@@ -1,3 +1,4 @@
+/*
 #include <iostream>
 #include <string>
 
@@ -27,7 +28,6 @@ struct Platform
 	int gameCount;
 };
 
-void Run();
 
 struct Test
 {
@@ -49,33 +49,17 @@ struct Test
 
 int Test::counter = 0;
 
+void RunLab1Solution();
+void RunMemoryExample();
+
 int main()
 {
-	//Test test1;
-	//Test test1();
-	// Adding () beside an object name calls its default constructor,
-	// identical to how the default constructor is implicitly invoked otherwise.
-	
-	// Similarly, when we declare an array the compiler still automatically
-	// invokes the default constructor. Note that arrays can only be constructed
-	// with the default constructor
-	//Test stackTests[100];
-
-	// Exact same principles hold true when using dynamic memory
-	// Note that new[] must have delete[] (array)
-	// Note that new must have delete (scalar)
-	Test* arrayTest = new Test[100];
-	delete[] arrayTest;
-
-	Test* scalarTest = new Test;
-	delete scalarTest;
-	//Test* test1 = new Test(); // calls default constructor just like Test;
-
+	RunMemoryExample();
 	//Run();
 	return 0;
 }
 
-void Run()
+void RunLab1Solution()
 {
 	int platformCount = 0;
 	cout << "How many consoles would you like to create?" << endl;
@@ -148,3 +132,28 @@ void Run()
 	}
 	delete[] platforms;
 }
+
+void RunMemoryExample()
+{
+	//Test test1;
+	//Test test1();
+	// Adding () beside an object name calls its default constructor,
+	// identical to how the default constructor is implicitly invoked otherwise.
+
+	// Similarly, when we declare an array the compiler still automatically
+	// invokes the default constructor. Note that arrays can only be constructed
+	// with the default constructor
+	//Test stackTests[100];
+
+	// Exact same principles hold true when using dynamic memory
+	// Note that new[] must have delete[] (array)
+	// Note that new must have delete (scalar)
+	Test* arrayTest = new Test[100];
+	delete[] arrayTest;
+
+	//Test* scalarTest = new Test(); // calls default constructor just like Test;
+	Test* scalarTest = new Test;
+	delete scalarTest;
+}
+
+//*/

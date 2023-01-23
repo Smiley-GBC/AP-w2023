@@ -19,7 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Lab2.cpp" />
+    <ClCompile Include="labs\lab1.cpp" />
+    <ClCompile Include="labs\lab2.cpp" />
+    <ClCompile Include="labs\lab3.cpp" />
+    <ClCompile Include="lectures\lecture2.cpp" />
+    <ClCompile Include="lectures\lecture3.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
