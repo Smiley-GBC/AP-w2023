@@ -48,6 +48,9 @@
     <ClCompile Include="CopyReview.cpp">
       <Filter>Week 4</Filter>
     </ClCompile>
+    <ClCompile Include="lab4.cpp">
+      <Filter>Week 4</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NumberArray.h">
