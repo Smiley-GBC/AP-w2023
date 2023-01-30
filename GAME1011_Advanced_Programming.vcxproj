@@ -35,6 +35,7 @@
     <ClInclude Include="NumberArray.h" />
     <ClInclude Include="Objects.h" />
     <ClInclude Include="Streams.h" />
+    <ClInclude Include="Vector2.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

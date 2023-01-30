@@ -8,6 +8,19 @@ using std::cin;
 using std::ostream;
 using std::istream;
 
+// Again, this does the same thing as
+// istream& operator>>(istream& in, Platform& platform), its just a regular function!
+//void InputPlatform(Platform& platform)
+//{
+//	cout << "What is the name of your platform?" << endl;
+//	cin >> platform.name;
+//	cout << "Who makes the " << platform.name << "?" << endl;
+//	cin >> platform.manufacturer;
+//	cout << "How many games are on the " << platform.name << "?" << endl;
+//	cin >> platform.gameCount;
+//	platform.games = new Game[platform.gameCount];
+//}
+
 ostream& operator<<(ostream& out, const Platform& platform)
 {
 	cout << "Name: " << platform.name << endl;

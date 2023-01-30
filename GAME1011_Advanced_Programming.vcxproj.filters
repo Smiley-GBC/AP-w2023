@@ -68,5 +68,8 @@
     <ClInclude Include="NumberArray.h">
       <Filter>Week 4\lecture4</Filter>
     </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>Week 4\lab4</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
