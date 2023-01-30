@@ -30,6 +30,7 @@
     <ClCompile Include="lecture5.cpp" />
     <ClCompile Include="NumberArray.cpp" />
     <ClCompile Include="OperatorAbuse.cpp" />
+    <ClCompile Include="Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NumberArray.h" />

@@ -57,6 +57,9 @@
     <ClCompile Include="NumberArray.cpp">
       <Filter>Week 4\lecture4</Filter>
     </ClCompile>
+    <ClCompile Include="Vector2.cpp">
+      <Filter>Week 4\lab4</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Objects.h">

@@ -23,6 +23,20 @@ int main()
 		Vector2 c = a * b;
 		Vector2 d = a / b;
 	}
+
+	// member-wise test
+	{
+		Vector2 a{ 1.0f, 1.0f };
+		a += {2.0f, 2.0f};
+		a -= {2.0f, 2.0f};
+		a *= {2.0f, 2.0f};
+		a /= {2.0f, 2.0f};
+	}
+
+	Vector2 a{ 1.0f, 2.0f };
+	float x = a[0];
+	float y = a[1];
+	a %= Vector2{ 2.0f, 2.0f };
 	
 	return 0;
 }
