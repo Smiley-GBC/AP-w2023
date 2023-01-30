@@ -1,40 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Week 1">
+      <UniqueIdentifier>{f8c881f8-3297-46f8-bbab-4d376be3f239}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="Week 2">
+      <UniqueIdentifier>{950a74f5-dc61-4f49-87ac-fe5127013217}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Week 3">
+      <UniqueIdentifier>{30ced720-59a5-45e3-89c0-ac6fa3291834}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Lectures">
-      <UniqueIdentifier>{bb27ce00-9a4f-4376-9de1-c58b191bfc30}</UniqueIdentifier>
+    <Filter Include="Week 4">
+      <UniqueIdentifier>{c69dea0f-0448-4489-b77d-16487172fa67}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Labs">
-      <UniqueIdentifier>{6c41fc6c-2e57-4863-b02a-8391fc13321d}</UniqueIdentifier>
+    <Filter Include="Week 5">
+      <UniqueIdentifier>{b8dc303e-9049-43cd-8f1a-226e2098108e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="labs\lab1.cpp">
-      <Filter>Labs</Filter>
+    <ClCompile Include="lab1.cpp">
+      <Filter>Week 1</Filter>
     </ClCompile>
-    <ClCompile Include="labs\lab2.cpp">
-      <Filter>Labs</Filter>
+    <ClCompile Include="lab2.cpp">
+      <Filter>Week 2</Filter>
     </ClCompile>
-    <ClCompile Include="labs\lab3.cpp">
-      <Filter>Labs</Filter>
+    <ClCompile Include="lecture2.cpp">
+      <Filter>Week 2</Filter>
     </ClCompile>
-    <ClCompile Include="lectures\lecture2.cpp">
-      <Filter>Lectures</Filter>
+    <ClCompile Include="lab3.cpp">
+      <Filter>Week 3</Filter>
     </ClCompile>
-    <ClCompile Include="lectures\lecture3.cpp">
-      <Filter>Lectures</Filter>
+    <ClCompile Include="lecture3.cpp">
+      <Filter>Week 3</Filter>
     </ClCompile>
+    <ClCompile Include="NumberArray.cpp">
+      <Filter>Week 4</Filter>
+    </ClCompile>
+    <ClCompile Include="lecture5.cpp">
+      <Filter>Week 5</Filter>
+    </ClCompile>
+    <ClCompile Include="lecture4.cpp">
+      <Filter>Week 4</Filter>
+    </ClCompile>
+    <ClCompile Include="OperatorAbuse.cpp">
+      <Filter>Week 4</Filter>
+    </ClCompile>
+    <ClCompile Include="CopyReview.cpp">
+      <Filter>Week 4</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="NumberArray.h">
+      <Filter>Week 4</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
