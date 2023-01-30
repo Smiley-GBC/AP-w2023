@@ -16,6 +16,12 @@
     <Filter Include="Week 5">
       <UniqueIdentifier>{b8dc303e-9049-43cd-8f1a-226e2098108e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Week 4\lab4">
+      <UniqueIdentifier>{2914d20d-0702-4137-8985-866a265b903d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Week 4\lecture4">
+      <UniqueIdentifier>{2fcd5b53-83a4-4317-84b7-63233a350eab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="lab1.cpp">
@@ -33,28 +39,34 @@
     <ClCompile Include="lecture3.cpp">
       <Filter>Week 3</Filter>
     </ClCompile>
-    <ClCompile Include="NumberArray.cpp">
-      <Filter>Week 4</Filter>
-    </ClCompile>
     <ClCompile Include="lecture5.cpp">
       <Filter>Week 5</Filter>
-    </ClCompile>
-    <ClCompile Include="lecture4.cpp">
-      <Filter>Week 4</Filter>
     </ClCompile>
     <ClCompile Include="OperatorAbuse.cpp">
       <Filter>Week 4</Filter>
     </ClCompile>
-    <ClCompile Include="CopyReview.cpp">
-      <Filter>Week 4</Filter>
-    </ClCompile>
     <ClCompile Include="lab4.cpp">
-      <Filter>Week 4</Filter>
+      <Filter>Week 4\lab4</Filter>
+    </ClCompile>
+    <ClCompile Include="CopyReview.cpp">
+      <Filter>Week 4\lecture4</Filter>
+    </ClCompile>
+    <ClCompile Include="lecture4.cpp">
+      <Filter>Week 4\lecture4</Filter>
+    </ClCompile>
+    <ClCompile Include="NumberArray.cpp">
+      <Filter>Week 4\lecture4</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Objects.h">
+      <Filter>Week 4\lab4</Filter>
+    </ClInclude>
+    <ClInclude Include="Streams.h">
+      <Filter>Week 4\lab4</Filter>
+    </ClInclude>
     <ClInclude Include="NumberArray.h">
-      <Filter>Week 4</Filter>
+      <Filter>Week 4\lecture4</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

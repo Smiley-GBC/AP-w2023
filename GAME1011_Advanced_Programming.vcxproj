@@ -33,6 +33,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NumberArray.h" />
+    <ClInclude Include="Objects.h" />
+    <ClInclude Include="Streams.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
