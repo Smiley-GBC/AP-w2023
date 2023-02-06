@@ -1,3 +1,4 @@
+///*
 #include "Streams.h"
 #include "Vector2.h"
 
@@ -86,4 +87,4 @@ void RunUpdatedLab1Solution()
 		delete[] platform.games;
 	}
 	delete[] platforms;
-}
+}//*/

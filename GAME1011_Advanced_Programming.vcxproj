@@ -28,6 +28,8 @@
     <ClCompile Include="lecture3.cpp" />
     <ClCompile Include="lecture4.cpp" />
     <ClCompile Include="lecture5.cpp" />
+    <ClCompile Include="Overloading.cpp" />
+    <ClCompile Include="People.cpp" />
     <ClCompile Include="NumberArray.cpp" />
     <ClCompile Include="OperatorAbuse.cpp" />
     <ClCompile Include="Vector2.cpp" />

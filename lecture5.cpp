@@ -1,154 +1,227 @@
-/*#pragma once
+///*
 #include <iostream>
-#include <string>
 using namespace std;
 
-enum class Discipline { NONE, GAME_DEVELOPER, SOFTWARE_ENGINEER, ANIMATOR };
-enum class Classification { FRESHMAN, SOPHMORE, JUNIOR, SENIOR };
-
-// Base class
-class Person
+struct Insect
 {
-private:
+	int legs = 4;
+	int antenna = 2;
+	int wings = 2;
+};
+
+struct Bee : public Insect
+{
+	void Sting()
+	{
+		cout << "OUCHHH!!" << endl;
+	}
+};
+
+// Inheritance can be thought of as a copy-paste from base to derived
+struct InheritedGrassHopper : public Insect
+{
+	int grasshopperValue = 999;
+
+	void Jump()
+	{
+		cout << "WHOOOOOOOOOOOHOOOOOOOOOOO" << endl;
+	}
+};
+
+struct GrassHopper
+{
+	int legs = 4;
+	int antenna = 2;
+	int wings = 2;
+	int grasshopperValue = 999;
+
+	void Jump()
+	{
+		cout << "WHOOOOOOOOOOOHOOOOOOOOOOO" << endl;
+	}
+};
+
+struct Transform
+{
+	float x;
+	float y;
+
+	void Update()
+	{
+
+	}
+};
+
+struct Sprite
+{
+	float r;
+	float g;
+	float b;
+
+	void Update()
+	{
+
+	}
+
+	int test;
+};
+
+struct Collider
+{
+	float width;
+	float height;
+
+	void Update()
+	{
+
+	}
+
+	int test;
+};
+
+struct GameObject : public Transform, public Sprite, public Collider
+{
 	string name;
-public:
-	Person()
+};
+
+struct A
+{
+	A()
 	{
-		// cout << "Person Constructor Called!" << endl;
-		setName("");
+		//cout << "Base class constructor (A) called" << endl;
 	}
-	Person(const string& name)
+
+	A(int val) : secretValue(val)
 	{
-		setName(name);
+		//cout << "Overloaded base class constructor (A) called" << endl;
 	}
-	~Person()
+
+	~A()
 	{
-		// cout << "Person Destructor Called!" << endl;
+		//cout << "Base class destructor (A) called" << endl;
 	}
-	void setName(const string& name)
+
+	void Output()
 	{
-		this->name = name;
+		//cout << "AAAAAAAAAAAAAAAAAAAAAAAAA" << endl;
 	}
-	string getName() const
+
+	string Name()
 	{
 		return name;
 	}
-};
 
-class Student : public Person
-{
-private:
-	Discipline major;
-	Person* advisor;
 public:
-	Student() : Person("DEFAULT")
-	{
-		setMajor(Discipline::NONE);
-		setAdvisor(new Person("N/A"));
-	}
-	Student(const string& name, Discipline major, Person* advisor) : Person(name)
-	{
-		setMajor(major);
-		setAdvisor(advisor);
-	}
-	~Student() {}
-	void setMajor(Discipline major)
-	{
-		this->major = major;
-	}
-	Discipline getMajor() const
-	{
-		return major;
-	}
-	void setAdvisor(Person* advisor)
-	{
-		this->advisor = advisor;
-	}
-	Person* getAdvisor() const
-	{
-		return advisor;
-	}
+	int value = 1;
+	string name;
+
+protected:
+	int secretValue = 2;
 };
 
-class Faculty : public Person
+struct B : public A
 {
-private:
-	Discipline department;
-public:
-	Faculty() : Person("DEFAULT")
-	{
-		setDepartment(Discipline::NONE);
-	}
-	Faculty(const string& name, Discipline department) : Person(name)
-	{
-		setDepartment(department);
-	}
-	~Faculty() {}
-
-	void setDepartment(Discipline department)
-	{
-		this->department = department;
-	}
-	Discipline getDepartment() const
-	{
-		return department;
-	}
-};
-
-class TFaculty : public Faculty
-{
-private:
 	string title;
-public:
-	TFaculty() : Faculty()
+
+	B()// : A() <-- happens automatically with derived default constructors
 	{
-		setTitle("_");
+		//cout << "Derived class constructor (B) called" << endl;
 	}
-	TFaculty(string fname, Discipline d, string title) : Faculty(fname, d)
+
+	B(int val) : A(val)
 	{
-		setTitle(title);
+		//cout << "Overloaded base class constructor (B) called" << endl;
 	}
-	void setTitle(string title)
+
+	~B()
 	{
-		this->title = title;
+		//cout << "Derived class destructor (B) called" << endl;
 	}
-	string getTitle() const
+
+	void Output()
 	{
-		return title;
+		cout << "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" << endl;
 	}
-	string getName() const
+
+	string Name()
 	{
-		return getTitle() + " " + Person::getName();
+		return title + " " + A::Name();
+	}
+
+	void BMethod()
+	{
+
 	}
 };
 
-const string type[] = { "None", "Game Developer", "Software Engineer", "Animator" };
+// Overloading differs in signatures whereas overriding differs in object context!
+//void Output()
+//{
+//	cout << "CCCCCCCCCCCC" << endl;
+//}
+//
+//void Output(string text)
+//{
+//	cout << text << endl;
+//}
 
 int main()
 {
-	a0.print();
-	a1.print();
+	//GameObject object;
+	//object.name = "Connor";
+	//object.width = 60;
+	//object.height = 40;
+	//object.r = 255;
+	//object.x = 100.0f;
+	
+	// Note that type-conversions ONLY work with pointers (overrides still work without pointers)
+	//A a;
+	//B b;
+	//a.Output();
+	//b.Output();
+	//a.name = "Smiley";
+	//b.name = "Smiley";
+	//b.title = "Professor";
+	//cout << a.Name() << endl;
+	//cout << b.Name() << endl;
 
-	Person* p = new Person("Connor Smiley");
-	Student* s = new Student("Jane Doe", Discipline::GAME_DEVELOPER, p);
-	Faculty* f = new Faculty("Bob Dole", Discipline::SOFTWARE_ENGINEER);
-	TFaculty* t = new TFaculty("Lisa Simpson", Discipline::ANIMATOR, "Lord Commander of the Nights Watch");
+	A* a = new A;
+	B* b = new B;
+	a->name = "Connor";
+	b->title = "Professor";
+	b->name = "Smiley";
+	//cout << a->Name() << endl;
+	//cout << b->Name() << endl;
 
-	cout << "Hello, " << p->getName() << endl;
-	cout << "Hello, " << s->getName() << ". You are a " << type[static_cast<int>(s->getMajor())] << endl;
-	cout << "Hello, " << f->getName() << ". Your department is " << type[static_cast<int>(f->getDepartment())] << endl;
-	cout << "Hello, " << t->getName() << ". Your department is " << type[static_cast<int>(t->getDepartment())] << endl;
+	// To be continued...
+	A* b1 = b;
+	cout << ((B*)b1)->Name() << endl;
+	//A* b2 = new B;
+	//b1->BMethod(); // invalid because we're treating the "B" as an "A".
 
-	delete t;
-	delete f;
-	delete s;
-	delete p;
+	// Constructors can be overloaded just like functions.
+	// Objects are destroyed in the opposite order they're created in!
+	// Destructors cannot be overloaded
+	//{
+	//	B b(5);
+	//	//b.value; // accessible since its part of A and its public
+	//	//b.secretValue; // inaccessible since its protected
+	//}
 
-	t = nullptr;
-	f = nullptr;
-	s = nullptr;
-	p = nullptr;
+	// "Deadly Diamond (member or method conflict via multi-inheritance)"
+	//object.test = 5;
+	//object.Update();
+
+	//InheritedGrassHopper ig;
+	//GrassHopper gh;
+	//Bee b;
+	//b.Sting();
+	//b.antenna;
+	//
+	//ig.grasshopperValue;
+	//ig.antenna;
+	//ig.Jump();
+	//gh.Jump();
 
 	return 0;
-}
-*/
+}//*/

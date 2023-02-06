@@ -39,7 +39,7 @@
     <ClCompile Include="lecture3.cpp">
       <Filter>Week 3</Filter>
     </ClCompile>
-    <ClCompile Include="lecture5.cpp">
+    <ClCompile Include="People.cpp">
       <Filter>Week 5</Filter>
     </ClCompile>
     <ClCompile Include="OperatorAbuse.cpp">
@@ -59,6 +59,12 @@
     </ClCompile>
     <ClCompile Include="Vector2.cpp">
       <Filter>Week 4\lab4</Filter>
+    </ClCompile>
+    <ClCompile Include="lecture5.cpp">
+      <Filter>Week 5</Filter>
+    </ClCompile>
+    <ClCompile Include="Overloading.cpp">
+      <Filter>Week 5</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
