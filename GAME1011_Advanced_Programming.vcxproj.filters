@@ -63,9 +63,6 @@
     <ClCompile Include="lecture5.cpp">
       <Filter>Week 5</Filter>
     </ClCompile>
-    <ClCompile Include="Overloading.cpp">
-      <Filter>Week 5</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Objects.h">

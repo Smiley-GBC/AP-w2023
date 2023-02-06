@@ -1,4 +1,4 @@
-///*
+/*
 #include <iostream>
 using namespace std;
 
@@ -106,7 +106,7 @@ struct A
 		//cout << "AAAAAAAAAAAAAAAAAAAAAAAAA" << endl;
 	}
 
-	string Name()
+	virtual string Name()
 	{
 		return name;
 	}
@@ -195,7 +195,7 @@ int main()
 
 	// To be continued...
 	A* b1 = b;
-	cout << ((B*)b1)->Name() << endl;
+	cout << b1->Name() << endl;
 	//A* b2 = new B;
 	//b1->BMethod(); // invalid because we're treating the "B" as an "A".
 
