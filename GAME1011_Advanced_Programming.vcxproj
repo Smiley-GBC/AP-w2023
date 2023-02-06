@@ -24,6 +24,7 @@
     <ClCompile Include="lab2.cpp" />
     <ClCompile Include="lab3.cpp" />
     <ClCompile Include="lab4.cpp" />
+    <ClCompile Include="lab5.cpp" />
     <ClCompile Include="lecture2.cpp" />
     <ClCompile Include="lecture3.cpp" />
     <ClCompile Include="lecture4.cpp" />
