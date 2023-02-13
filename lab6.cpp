@@ -1,3 +1,4 @@
+/*
 #include <cassert>
 #include <iostream>
 #include <string>
@@ -85,7 +86,7 @@ int main()
 	//Array<int, 200> integers;
 	//integers[15] = 2;
 	return 0;
-}
+}*/
 
 // "using" allows us to give a type an alias. The following lines are identical to the compiler.
 //using Number = int;

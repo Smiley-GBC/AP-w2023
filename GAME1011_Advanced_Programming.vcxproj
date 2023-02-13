@@ -23,6 +23,7 @@
     <ClCompile Include="IntArray.cpp" />
     <ClCompile Include="lab1.cpp" />
     <ClCompile Include="lab2.cpp" />
+    <ClCompile Include="Lab2Solution.cpp" />
     <ClCompile Include="lab3.cpp" />
     <ClCompile Include="lab4.cpp" />
     <ClCompile Include="lab5.cpp" />
