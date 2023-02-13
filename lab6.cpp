@@ -17,21 +17,22 @@ private:
 	T mData[size]{};
 };
 
-class IntVector
+template<typename T>
+class Vector
 {
 public:
-	IntVector()
+	Vector()
 	{
-		mData = new int[mCapacity];
+		mData = new T[mCapacity];
 	}
 
-	void Push(int value)
+	void Push(T value)
 	{
 		if (mSize == mCapacity)
 		{
 			mCapacity++;
 
-			int* newMemory = new int[mCapacity];
+			T* newMemory = new T[mCapacity];
 			for (size_t i = 0; i < mSize; i++)
 				newMemory[i] = mData[i];
 
@@ -50,7 +51,7 @@ public:
 	//	return copy;
 	//}
 
-	int operator[](size_t index)
+	T& operator[](size_t index)
 	{
 		assert(index < mSize);
 		return mData[index];
@@ -69,7 +70,7 @@ private:
 
 int main()
 {
-	IntVector v;
+	Vector<int> v;
 	v.Push(1);
 	v.Push(2);
 	v.Push(3);
