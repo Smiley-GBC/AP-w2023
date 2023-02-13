@@ -1,4 +1,5 @@
 #include <cassert>
+#include <iostream>
 #include <string>
 using namespace std;
 
@@ -16,11 +17,72 @@ private:
 	T mData[size]{};
 };
 
+class IntVector
+{
+public:
+	IntVector()
+	{
+		mData = new int[mCapacity];
+	}
+
+	void Push(int value)
+	{
+		if (mSize == mCapacity)
+		{
+			mCapacity++;
+
+			int* newMemory = new int[mCapacity];
+			for (size_t i = 0; i < mSize; i++)
+				newMemory[i] = mData[i];
+
+			delete[] mData;
+			mData = newMemory;
+		}
+
+		mData[mSize] = value;
+		mSize++;
+	}
+
+	//int Pop()
+	//{
+	//	int copy = mData[mSize];
+	//	mSize--;
+	//	return copy;
+	//}
+
+	int operator[](size_t index)
+	{
+		assert(index < mSize);
+		return mData[index];
+	}
+
+	size_t Size()
+	{
+		return mSize;
+	}
+
+private:
+	int* mData = nullptr;
+	size_t mSize = 0;		// <-- number of elements
+	size_t mCapacity = 2;	// <-- total size
+};
+
 int main()
 {
-	Array<float, 2> decimals;
-	Array<int, 200> integers;
-	integers[15] = 2;
+	IntVector v;
+	v.Push(1);
+	v.Push(2);
+	v.Push(3);
+	v.Push(4);
+
+	for (size_t i = 0; i < v.Size(); i++)
+	{
+		cout << v[i] << endl;
+	}
+
+	//Array<float, 2> decimals;
+	//Array<int, 200> integers;
+	//integers[15] = 2;
 	return 0;
 }
 
