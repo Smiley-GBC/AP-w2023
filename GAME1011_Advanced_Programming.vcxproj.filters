@@ -54,9 +54,6 @@
     <ClCompile Include="lab4.cpp">
       <Filter>Week 4\lab4</Filter>
     </ClCompile>
-    <ClCompile Include="CopyReview.cpp">
-      <Filter>Week 4\lecture4</Filter>
-    </ClCompile>
     <ClCompile Include="lecture4.cpp">
       <Filter>Week 4\lecture4</Filter>
     </ClCompile>
@@ -69,14 +66,8 @@
     <ClCompile Include="lab5.cpp">
       <Filter>Week 5</Filter>
     </ClCompile>
-    <ClCompile Include="lecture6.cpp">
+    <ClCompile Include="polymorphism.cpp">
       <Filter>Week 6</Filter>
-    </ClCompile>
-    <ClCompile Include="NumberArray.cpp">
-      <Filter>Containers</Filter>
-    </ClCompile>
-    <ClCompile Include="IntArray.cpp">
-      <Filter>Containers</Filter>
     </ClCompile>
     <ClCompile Include="templates.cpp">
       <Filter>Week 6</Filter>
@@ -98,10 +89,10 @@
     <ClInclude Include="Vector2.h">
       <Filter>Week 4\lab4</Filter>
     </ClInclude>
-    <ClInclude Include="NumberArray.h">
+    <ClInclude Include="Array.h">
       <Filter>Containers</Filter>
     </ClInclude>
-    <ClInclude Include="IntArray.h">
+    <ClInclude Include="Vector.h">
       <Filter>Containers</Filter>
     </ClInclude>
   </ItemGroup>

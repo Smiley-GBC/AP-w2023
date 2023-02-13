@@ -1,3 +1,4 @@
+/*
 #include <iostream>
 #include <string>
 #include <array>
@@ -130,4 +131,4 @@ int main()
 
 	delete[] characters;
 	return 0;
-}
+}//*/

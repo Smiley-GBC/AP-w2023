@@ -1,92 +1,43 @@
-/*
+///*
 #include <cassert>
 #include <iostream>
 #include <string>
+#include <array>
+#include <vector>
+#include "Array.h"
+#include "Vector.h"
 using namespace std;
-
-template<typename T, size_t size>
-class Array
-{
-public:
-	T& operator[](size_t index)
-	{
-		assert(index < size);
-		return mData[index];
-	}
-
-private:
-	T mData[size]{};
-};
-
-template<typename T>
-class Vector
-{
-public:
-	Vector()
-	{
-		mData = new T[mCapacity];
-	}
-
-	void Push(T value)
-	{
-		if (mSize == mCapacity)
-		{
-			mCapacity++;
-
-			T* newMemory = new T[mCapacity];
-			for (size_t i = 0; i < mSize; i++)
-				newMemory[i] = mData[i];
-
-			delete[] mData;
-			mData = newMemory;
-		}
-
-		mData[mSize] = value;
-		mSize++;
-	}
-
-	//int Pop()
-	//{
-	//	int copy = mData[mSize];
-	//	mSize--;
-	//	return copy;
-	//}
-
-	T& operator[](size_t index)
-	{
-		assert(index < mSize);
-		return mData[index];
-	}
-
-	size_t Size()
-	{
-		return mSize;
-	}
-
-private:
-	int* mData = nullptr;
-	size_t mSize = 0;		// <-- number of elements
-	size_t mCapacity = 2;	// <-- total size
-};
 
 int main()
 {
 	Vector<int> v;
 	v.Push(1);
+	v.Pop();
 	v.Push(2);
+	v.Pop();
 	v.Push(3);
+	v.Pop();
 	v.Push(4);
+	v.Push(5);
+	v.Push(6);
+	v.Pop();
+	v.Pop();
+	v.Pop();
+	v.Push(4);
+	v.Push(5);
+	v.Push(6);
 
+	cout << v.Front() << endl;
+	cout << v.Back() << endl;
 	for (size_t i = 0; i < v.Size(); i++)
 	{
 		cout << v[i] << endl;
 	}
 
-	//Array<float, 2> decimals;
-	//Array<int, 200> integers;
-	//integers[15] = 2;
+	// This is better than native arrays because it zero-initializes members and has a range check!
+	Array<float, 2> decimals;
 	return 0;
-}*/
+}//*/
 
 // "using" allows us to give a type an alias. The following lines are identical to the compiler.
 //using Number = int;
