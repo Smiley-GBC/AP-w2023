@@ -81,6 +81,9 @@
     <ClCompile Include="templates.cpp">
       <Filter>Week 6</Filter>
     </ClCompile>
+    <ClCompile Include="lab6.cpp">
+      <Filter>Week 6</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Objects.h">

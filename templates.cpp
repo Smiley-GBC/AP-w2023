@@ -1,3 +1,4 @@
+/*
 #include <iostream>
 #include <string>
 #include "Vector2.h"
@@ -104,6 +105,7 @@ int main()
 
 	return 0;
 }
+//*/
 
 /*
 int Square(int number)
