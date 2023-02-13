@@ -25,6 +25,9 @@
     <Filter Include="Week 6">
       <UniqueIdentifier>{d1a1b720-1852-4999-b2f1-6ddb58f883cf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Containers">
+      <UniqueIdentifier>{d17feec0-8fc3-452b-acac-2ec8a65cf338}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="lab1.cpp">
@@ -57,9 +60,6 @@
     <ClCompile Include="lecture4.cpp">
       <Filter>Week 4\lecture4</Filter>
     </ClCompile>
-    <ClCompile Include="NumberArray.cpp">
-      <Filter>Week 4\lecture4</Filter>
-    </ClCompile>
     <ClCompile Include="Vector2.cpp">
       <Filter>Week 4\lab4</Filter>
     </ClCompile>
@@ -72,6 +72,12 @@
     <ClCompile Include="lecture6.cpp">
       <Filter>Week 6</Filter>
     </ClCompile>
+    <ClCompile Include="NumberArray.cpp">
+      <Filter>Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="IntArray.cpp">
+      <Filter>Containers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Objects.h">
@@ -80,11 +86,14 @@
     <ClInclude Include="Streams.h">
       <Filter>Week 4\lab4</Filter>
     </ClInclude>
-    <ClInclude Include="NumberArray.h">
-      <Filter>Week 4\lecture4</Filter>
-    </ClInclude>
     <ClInclude Include="Vector2.h">
       <Filter>Week 4\lab4</Filter>
+    </ClInclude>
+    <ClInclude Include="NumberArray.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="IntArray.h">
+      <Filter>Containers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

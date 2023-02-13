@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CopyReview.cpp" />
+    <ClCompile Include="IntArray.cpp" />
     <ClCompile Include="lab1.cpp" />
     <ClCompile Include="lab2.cpp" />
     <ClCompile Include="lab3.cpp" />
@@ -36,6 +37,7 @@
     <ClCompile Include="Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="IntArray.h" />
     <ClInclude Include="NumberArray.h" />
     <ClInclude Include="Objects.h" />
     <ClInclude Include="Streams.h" />

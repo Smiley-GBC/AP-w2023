@@ -17,7 +17,7 @@ public:
 	{
 		cout << "  ^\n";
 		cout << "/   \\\n";
-		cout << "------\n\n";
+		cout << "------\n" << endl;
 	}
 };
 
@@ -35,7 +35,7 @@ class Oval : public Circle
 public:
 	void Draw() const final
 	{
-		cout << "\n(=)" << endl;
+		cout << "\n(=)\n" << endl;
 	}
 };
 
@@ -44,5 +44,18 @@ int main()
 	Shape* shapes[3] { new Triangle, new Circle, new Oval };
 	for (int i = 0; i < 3; i++)
 		shapes[i]->Draw();
+
 	return 0;
 }
+
+/*
+void DrawTriangle()
+{
+	cout << "  ^\n";
+	cout << "/   \\\n";
+	cout << "------\n\n";
+}
+void (*CustomDraw)() = nullptr;
+shapes[0]->CustomDraw = DrawTriangle;
+shapes[0]->CustomDraw();
+*/
