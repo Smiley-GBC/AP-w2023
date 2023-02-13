@@ -1,24 +1,23 @@
 #include <cassert>
 
-template<typename T>
+template<typename T, size_t size>
 class Array
 {
 public:
 	T& operator[](size_t index)
 	{
-		assert(index < mSize);
+		assert(index < size);
 		return mData[index];
 	}
 
 private:
-	T mData[16];
-	const size_t mSize = 16;
+	T mData[size]{};
 };
 
 int main()
 {
-	Array<float> decimals;
-	Array<int> integers;
+	Array<float, 2> decimals;
+	Array<int, 200> integers;
 	integers[15] = 2;
 	return 0;
 }
