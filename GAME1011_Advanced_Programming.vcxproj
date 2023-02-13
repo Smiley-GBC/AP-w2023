@@ -34,6 +34,7 @@
     <ClCompile Include="People.cpp" />
     <ClCompile Include="NumberArray.cpp" />
     <ClCompile Include="OperatorAbuse.cpp" />
+    <ClCompile Include="templates.cpp" />
     <ClCompile Include="Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>

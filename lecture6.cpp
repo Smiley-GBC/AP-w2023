@@ -1,3 +1,4 @@
+/*
 #include <iostream>
 #include <string>
 using namespace std;
@@ -118,15 +119,4 @@ int main()
 //
 //void (*RandomFunctionPtr)(int) = nullptr;
 //string(*RandomFunctionPtr2)(int) = nullptr;
-
-/*
-void DrawTriangle()
-{
-	cout << "  ^\n";
-	cout << "/   \\\n";
-	cout << "------\n\n";
-}
-void (*CustomDraw)() = nullptr;
-shapes[0]->CustomDraw = DrawTriangle;
-shapes[0]->CustomDraw();
-*/
+//*/

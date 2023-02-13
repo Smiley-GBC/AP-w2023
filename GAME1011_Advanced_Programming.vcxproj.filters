@@ -78,6 +78,9 @@
     <ClCompile Include="IntArray.cpp">
       <Filter>Containers</Filter>
     </ClCompile>
+    <ClCompile Include="templates.cpp">
+      <Filter>Week 6</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Objects.h">
