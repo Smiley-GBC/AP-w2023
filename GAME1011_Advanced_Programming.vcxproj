@@ -31,6 +31,7 @@
     <ClCompile Include="lecture4.cpp" />
     <ClCompile Include="lecture5.cpp" />
     <ClCompile Include="lecture9.cpp" />
+    <ClCompile Include="One.cpp" />
     <ClCompile Include="polymorphism.cpp" />
     <ClCompile Include="People.cpp" />
     <ClCompile Include="OperatorAbuse.cpp" />

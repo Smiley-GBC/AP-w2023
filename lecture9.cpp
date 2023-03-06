@@ -277,6 +277,7 @@ int main()
 }
 //*/
 
+/*
 #define MAX_LENGTH 256
 struct Entity
 {
@@ -349,4 +350,4 @@ int main()
 	//file.close();
 
 	return 0;
-}
+}//*/
