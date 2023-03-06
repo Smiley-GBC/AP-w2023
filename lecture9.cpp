@@ -1,10 +1,13 @@
 #include <iostream>
+#include <iomanip>
 #include <fstream>
+#include <sstream>
 #include <string>
+#include <array>
 using namespace std;
 
 // Example 1
-///*
+/*
 int main()
 {
 	// When working with a file stream
@@ -22,9 +25,12 @@ int main()
 	// Check if the filestream opened
 	if (!inOutFile)
 	{
-		// File was not found or opened correctly
+		// Note that ofstream must be used to create files
+		ofstream out("inout.txt");
 		cout << "The file was not found." << endl;
-		return 1;
+		cout << "Now creating inout.txt" << endl;
+		//return 1;
+		// Just create the file instead of exiting the program!!!
 	}
 
 	// 3. 
@@ -46,7 +52,7 @@ int main()
 
 // Example 2
 /*
-string dollarFormat(double amount)
+string dollarFormat(double amount);
  
 int main()
 {
@@ -144,7 +150,7 @@ int main()
 	string input;
 
 	// Open the file
-	file.open("wallace.txt", ios::in);
+	file.open("address.txt", ios::in);
 	if (file.fail())
 	{
 		cout << "File open error!" << endl;
@@ -152,12 +158,12 @@ int main()
 	}
 
 	// Read the file and print to the screen
-	// file >> input;
+	//file >> input;
 	getline(file, input);	// Default delim character is '\n'
 	while (!file.fail())
 	{
 		cout << input << endl;
-		// file >> input;
+		//file >> input;
 		getline(file, input);
 	}
 
@@ -172,7 +178,9 @@ int main()
 int main()
 {
 	char ch;
-	fstream ioFile("rewind.txt", ios::out);
+	fstream ioFile("rewind.xyz", ios::out);
+	// Files are treated as text unless specified otherwise.
+	// Just cause Windows doesn't know what a .xyz file is doesn't matter!
 
 	// Test Open
 	if (!ioFile)
@@ -204,7 +212,9 @@ int main()
 	// Rewind the file
 	ioFile.clear();
 	ioFile.seekg(10L, ios::beg);
-
+	//ioFile.seekg(-30, ios::end);
+	// Similar to beg, we can go backwards from the end.
+	// In fact, we can go any direction we want, we just risk an EOF error!
 	ioFile.seekg(-5L, ios::cur);
 
 	// Read the file and print to the screen
@@ -232,12 +242,12 @@ int main()
 	}
 
 	// Integer data to write to the binary file
-	int buffer[] = { 1,2,3,4,5,6,7,8,9,10 };
-	int size = sizeof(buffer) / sizeof(buffer[0]);	// Determines how many elements are in the array
+	int outBuffer[] = { 1,2,3,4,5,6,7,8,9,10 };
+	int count = sizeof(outBuffer) / sizeof(outBuffer[0]);	// Determines how many elements are in the array
 
 	// Write the data and close the file
 	cout << "Now writing the data to the file.\n";
-	file.write(reinterpret_cast<char*>(buffer), sizeof(buffer));
+	file.write(reinterpret_cast<char*>(outBuffer), sizeof(outBuffer));
 	file.close();
 
 	// READ IN THE BINARY FILE!
@@ -249,13 +259,16 @@ int main()
 		return 1;
 	}
 
+	array<int, 10> inBuffer;
 	cout << "Reading back the data.\n";
-	file.read(reinterpret_cast<char*>(buffer), sizeof(buffer));
+	file.read(reinterpret_cast<char*>(inBuffer.data()), sizeof(inBuffer));
+	std::reverse(inBuffer.begin(), inBuffer.end());
+	// Its best to load everything into memory FIRST, then modify stuff
 
 	// Write out the array to the console
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < count; i++)
 	{
-		cout << buffer[i] << " ";
+		cout << inBuffer[i] << " ";
 	}
 
 	file.close();
@@ -263,3 +276,77 @@ int main()
 	return 0;
 }
 //*/
+
+#define MAX_LENGTH 256
+struct Entity
+{
+	char name[MAX_LENGTH];
+	int health;
+	int armor;
+	float damage;
+	float speed;
+};
+
+// Example 7
+int main()
+{
+	//Entity outEntity, inEntity;
+	//sprintf_s(outEntity.name, "Connor");
+	//outEntity.health = 100;
+	//outEntity.armor = 10;
+	//outEntity.damage = 25.2f;
+	//outEntity.speed = 7.5f;
+	//
+	//fstream file("Entity.bin", ios::out | ios::binary | ios::trunc);
+	//file.write(reinterpret_cast<char*>(&outEntity), sizeof Entity);
+	//file.close();
+	//
+	//file = fstream("Entity.bin", ios::in | ios::binary);
+	//file.read(reinterpret_cast<char*>(&inEntity), sizeof Entity);
+	//file.close();
+
+	std::array<Entity, 10> entities;
+	for (Entity& entity : entities)
+	{
+		sprintf_s(entity.name, "Connor");
+		entity.health = 100;
+		entity.armor = 10;
+		entity.damage = 25.2f;
+		entity.speed = 7.5f;
+	}
+
+	fstream file("Entity.bin", ios::out | ios::binary | ios::trunc);
+	file.write(reinterpret_cast<char*>(entities.data()), sizeof entities);
+	file.flush();
+
+	// Use random access to modify entity number 6!
+	size_t pos = sizeof Entity * 6;
+	file.seekg(pos, ios::beg);
+	entities[6].health = 200;
+	file.write(reinterpret_cast<char*>(&entities[6]), sizeof Entity);
+	file.close();
+
+	entities[6].health = 100;
+	file = fstream("Entity.bin", ios::in | ios::binary);
+	file.seekg(pos, ios::beg);
+	file.read(reinterpret_cast<char*>(&entities[6]), sizeof Entity);
+	file.close();
+
+	// This is how we'd do things with text files
+	// (Lots of boilerplate)
+	//fstream file("Entity.txt", ios::out);
+	//file << outEntity.health << " "
+	//	 << outEntity.armor << " "
+	//	 << outEntity.damage << " "
+	//	 << outEntity.speed << endl;
+	//file.close();
+	//
+	//file = fstream("Entity.txt", ios::in);
+	//file >> inEntity.health
+	//	>> inEntity.armor
+	//	>> inEntity.damage
+	//	>> inEntity.speed;
+	//file.close();
+
+	return 0;
+}
