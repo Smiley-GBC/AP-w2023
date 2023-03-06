@@ -28,6 +28,9 @@
     <Filter Include="Containers">
       <UniqueIdentifier>{d17feec0-8fc3-452b-acac-2ec8a65cf338}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Week 9">
+      <UniqueIdentifier>{2fe2ab57-9f36-4319-96fc-7d6c55654d40}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="lab1.cpp">
@@ -77,6 +80,9 @@
     </ClCompile>
     <ClCompile Include="Lab2Solution.cpp">
       <Filter>Week 6</Filter>
+    </ClCompile>
+    <ClCompile Include="lecture9.cpp">
+      <Filter>Week 9</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
