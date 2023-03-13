@@ -1,3 +1,4 @@
+/*
 #include <iostream>
 #include <string>
 #include <array>
@@ -89,4 +90,4 @@ int main()
 	cout << player->name << " wins!" << endl;
 
 	return 0;
-}
+}//*/

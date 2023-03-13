@@ -34,6 +34,9 @@
     <Filter Include="Assignments">
       <UniqueIdentifier>{24c70aca-3799-46a0-a2c5-2654e283ec23}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Week 10">
+      <UniqueIdentifier>{759947b0-632a-4ec4-9a5a-bb0deabbd02c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="lab1.cpp">
@@ -89,6 +92,9 @@
     </ClCompile>
     <ClCompile Include="One.cpp">
       <Filter>Assignments</Filter>
+    </ClCompile>
+    <ClCompile Include="lecture10.cpp">
+      <Filter>Week 10</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
