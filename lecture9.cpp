@@ -9,9 +9,10 @@
 #include <thread>
 #include <algorithm>
 #include <cassert>
+
 using namespace std;
 
-// Example 1
+// Example 1 -- File Essentials
 /*
 int main()
 {
@@ -46,8 +47,7 @@ int main()
 
 	// EOF (End of file) flag is set. Must clear to perform other operations
 	inOutFile.clear();
-
-	inOutFile << "Wallace" << endl;
+	inOutFile << "Smiley" << endl;
 
 	// 4.
 	inOutFile.close();
@@ -55,7 +55,7 @@ int main()
 	return 0;
 }//*/
 
-// Example 2
+// Example 2 -- Stream formatting
 /*
 string dollarFormat(double amount);
  
@@ -94,13 +94,13 @@ string dollarFormat(double amount)
 	return outStr.str();
 }//*/
 
-// Example 3
+// Example 3 -- File Flags
 /*
 void showState(fstream&);
 
 int main()
 {
-	fstream testFile("stuff.dat", ios::out);
+	fstream testFile("flags.dat", ios::out);
 	if (testFile.fail())
 	{
 		cout << "Cannot open the file.\n";
@@ -115,7 +115,7 @@ int main()
 	testFile.close();
 
 	// Open the same file in input mode
-	testFile.open("stuff.dat", ios::in);
+	testFile.open("flags.dat", ios::in);
 	if (testFile.fail())
 	{
 		cout << "Cannot open the file.\n";
@@ -124,7 +124,6 @@ int main()
 	cout << "Reading from the file.\n";
 	testFile >> num;
 	showState(testFile);
-
 	// Are any error bits true? (Besides good) -- Yes! EOF bit
 
 	// Invalid read
@@ -133,7 +132,6 @@ int main()
 	showState(testFile);
 
 	testFile.close();
-
 	return 0;
 }
 
@@ -147,15 +145,13 @@ void showState(fstream& file)
 	file.clear();
 }//*/
 
-// Example 4
+// Example 4 -- Words vs Lines
 /*
 int main()
 {
 	fstream file;
-	string input;
-
-	// Open the file
-	file.open("lines.txt", ios::in);
+	
+	file.open("address.txt", ios::in);
 	if (file.fail())
 	{
 		cout << "File open error!" << endl;
@@ -163,45 +159,19 @@ int main()
 	}
 
 	// Read the file and print to the screen
-	//file >> input;
-	getline(file, input);	// Default delim character is '\n'
-
-	while (!file.fail())
+	string input;
+	do
 	{
+		//file >> input;		// Incorrect formatting
+		getline(file, input);	// Correct formatting
 		cout << input << endl;
-		//file >> input;
-		getline(file, input);
-	}
+	} while (!file.fail());
 
-	// Close the file
 	file.close();
-
 	return 0;
 }//*/
 
-// C (OG) version
-//#include <stdio.h>
-//#include <string.h>
-//int main()
-//{
-//	FILE* file = nullptr;
-//	file = fopen("lines.txt", "r+");
-//	char word1[64];
-//	char word2[64];
-//	fscanf(file, "%s %s\n", word1);
-//	return 0;
-//}
-
-// C++ version
-//int main()
-//{
-//	ifstream file("lines.txt");
-//	string word1, word2;
-//	file >> word1 >> word2;
-//	return 0;
-//}
-
-// Example 5
+// Example 5 -- Characters and Seeking
 /*
 int main()
 {
@@ -256,15 +226,14 @@ int main()
 	}
 
 	ioFile.close();
-
 	return 0;
 }//*/
 
-// Example 6
+// Example 6 -- Simple Binary Dump
 /*
 int main()
 {
-	fstream file("BinaryTest.bin", ios::out | ios::binary);
+	fstream file("Binary101.bin", ios::out | ios::binary);
 	if (!file)
 	{
 		cout << "Error creating file.";
@@ -281,7 +250,7 @@ int main()
 	file.close();
 
 	// READ IN THE BINARY FILE!
-	file.open("BinaryTest.bin", ios::in | ios::binary);
+	file.open("Binary101.bin", ios::in | ios::binary);
 	if (!file)
 	{
 		cout << "Error opening file.";
@@ -292,23 +261,16 @@ int main()
 	cout << "Reading back the data.\n";
 	file.read(reinterpret_cast<char*>(inBuffer.data()), sizeof(inBuffer));
 	file.close();
+
 	// Its best to load everything into memory FIRST, then modify stuff
-
-	//std::reverse(inBuffer.begin(), inBuffer.end());
-	// Write out the array to the console
 	for (int i = 0; i < count; i++)
-	{
-		cout << inBuffer[i] << " ";
 		inBuffer[i] = rand() % 10;
-	}
-
 	std::sort(inBuffer.begin(), inBuffer.end());
+	std::reverse(inBuffer.begin(), inBuffer.end());
 
 	return 0;
-}
-//*/
+}//*/
 
-///*
 #define MAX_LENGTH 256
 struct Entity
 {
@@ -319,6 +281,33 @@ struct Entity
 	float speed;
 };
 
+const int SZ_NAME = MAX_LENGTH;
+const int SZ_HEALTH = sizeof(int);
+const int SZ_ARMOR = sizeof(int);
+const int SZ_DAMAGE = sizeof(float);
+const int SZ_SPEED = sizeof(float);
+
+// Example 7 -- Custom Type Memory Manipulation
+/*
+int main()
+{
+	Entity src, dst;
+	sprintf_s(src.name, "Connor");
+	src.health = 100;
+	src.armor = 10;
+	src.damage = 25.2f;
+	src.speed = 7.5f;
+
+	// Usually copying the entire object is enough
+	//memcpy(&dst, &src, sizeof Entity);
+
+	//Copying individual fields isn't worth it unless they're huge (like 100+ megabytes)!
+	//memcpy(reinterpret_cast<char*>(&dst) + SZ_NAME, &src.health, SZ_HEALTH);
+
+	return 0;
+}//*/
+
+// Write entity to file
 void SerializeEntity(Entity& entity, size_t filePosition, fstream& file)
 {
 	assert(file.good());
@@ -326,6 +315,7 @@ void SerializeEntity(Entity& entity, size_t filePosition, fstream& file)
 	file.write(reinterpret_cast<char*>(&entity), sizeof Entity);
 }
 
+// Read entity from file
 void DeserializeEntity(Entity& entity, size_t filePosition, fstream& file)
 {
 	assert(file.good());
@@ -333,52 +323,34 @@ void DeserializeEntity(Entity& entity, size_t filePosition, fstream& file)
 	file.read(reinterpret_cast<char*>(&entity), sizeof Entity);
 }
 
-void Serialize(void* data, size_t dataSize, size_t filePosition, fstream& file)
+// Example 8 -- Single Object Serialization and Deserialization
+/*
+int main()
 {
-	assert(file.good());
-	file.seekp(filePosition);
-	file.write(reinterpret_cast<char*>(&data), dataSize);
-}
+	Entity src, dst;
+	sprintf_s(src.name, "Connor");
+	src.health = 100;
+	src.armor = 10;
+	src.damage = 25.2f;
+	src.speed = 7.5f;
 
-void Deserialize(void* data, size_t dataSize, size_t filePosition, fstream& file)
-{
-	assert(file.good());
-	file.seekg(filePosition);
-	file.read(reinterpret_cast<char*>(&data), dataSize);
-}
+	fstream file("Single Entity.bin", ios::out | ios::binary | ios::trunc);
+	SerializeEntity(src, 0, file);
+	file.close();
 
-// Example 7
+	file = fstream("Single Entity.bin", ios::in | ios::binary);
+	DeserializeEntity(dst, 0, file);
+	file.close();
+
+	return 0;
+}//*/
+
+// Example 9 -- Multiple Objects Serialization and Deserialization
 ///*
 int main()
 {
-	// Field sizes
-	Entity sizeEntity;
-	int nameSize = sizeof sizeEntity.name;
-	int healthSize = sizeof sizeEntity.health;
-	int armorSize = sizeof sizeEntity.armor;
-	int damageSize = sizeof sizeEntity.damage;
-	int speedSize = sizeof sizeEntity.speed;
-	assert(nameSize + healthSize + armorSize + damageSize + speedSize == sizeof Entity);
-
-	// Single object example
-	//Entity outEntity, inEntity;
-	//sprintf_s(outEntity.name, "Connor");
-	//outEntity.health = 100;
-	//outEntity.armor = 10;
-	//outEntity.damage = 25.2f;
-	//outEntity.speed = 7.5f;
-	//
-	//fstream file("Entity.bin", ios::out | ios::binary | ios::trunc);
-	//file.write(reinterpret_cast<char*>(&outEntity), sizeof Entity);
-	//file.close();
-	//
-	//file = fstream("Entity.bin", ios::in | ios::binary);
-	//file.read(reinterpret_cast<char*>(&inEntity), sizeof Entity);
-	//file.close();
-
-	// Multi-object example
-	std::array<Entity, 10> entities;
-	for (Entity& entity : entities)
+	std::array<Entity, 10> src, dst;
+	for (Entity& entity : src)
 	{
 		sprintf_s(entity.name, "Connor");
 		entity.health = 100;
@@ -387,56 +359,98 @@ int main()
 		entity.speed = 7.5f;
 	}
 
-	fstream file("Entity.bin", ios::out | ios::binary | ios::trunc);
-	file.write(reinterpret_cast<char*>(entities.data()), sizeof entities);
+	// Instead of calling SerializeEntity, its more efficient to write everything at once (1 vs 10 file operations)
+	fstream file("Multiple Entities.bin", ios::out | ios::binary | ios::trunc);
+	file.write(reinterpret_cast<char*>(src.data()), sizeof src);
 	file.flush();
 
-	// Use random access to modify entity number 6!
-	//size_t pos = sizeof Entity * 6;
-	//file.seekg(pos, ios::beg);
-	//entities[6].health = 200;
-	//file.write(reinterpret_cast<char*>(&entities[6]), sizeof Entity);
-	//file.close();
-	//
-	//file = fstream("Entity.bin", ios::in | ios::binary);
-	//file.seekg(pos, ios::beg);
-	//file.read(reinterpret_cast<char*>(&entities[6]), sizeof Entity);
-	//file.close();
-
-	// Works
-	//SerializeEntity(entities[6], sizeof Entity * 6, file);
-	//entities[6].health = 200;
-	//file.close();
-	//
-	//file = fstream("Entity.bin", ios::in | ios::binary);
-	//DeserializeEntity(entities[6], sizeof Entity * 6, file);
-	//file.close();
-
-	size_t pos = sizeof Entity * 6 + nameSize;
-	Serialize(&entities[6].health, sizeof entities[6].health, pos, file);
+	// Instead of calling DeserializeEntity, its more efficient to read everything at once (1 vs 10 file operations)
+	file = fstream("Multiple Entities.bin", ios::in | ios::binary);
+	file.read(reinterpret_cast<char*>(dst.data()), sizeof dst);
 	file.close();
-	entities[6].health = 200;
-
-	file = fstream("Entity.bin", ios::in | ios::binary);
-	Deserialize(&entities[6].health, sizeof entities[6].health, pos, file);
-	file.close();
-
-	// This is how we'd do things with text files
-	// (Lots of boilerplate)
-	//fstream file("Entity.txt", ios::out);
-	//file << outEntity.health << " "
-	//	 << outEntity.armor << " "
-	//	 << outEntity.damage << " "
-	//	 << outEntity.speed << endl;
-	//file.close();
-	//
-	//file = fstream("Entity.txt", ios::in);
-	//file >> inEntity.health
-	//	>> inEntity.armor
-	//	>> inEntity.damage
-	//	>> inEntity.speed;
-	//file.close();
 
 	return 0;
+}//*/
+
+// Write data to file
+void Serialize(void* data, size_t dataSize, size_t filePosition, fstream& file)
+{
+	assert(file.good());
+	file.seekp(filePosition);
+	file.write(reinterpret_cast<char*>(&data), dataSize);
 }
-//*/
+
+// Read data from file
+void Deserialize(void* data, size_t dataSize, size_t filePosition, fstream& file)
+{
+	assert(file.good());
+	file.seekg(filePosition);
+	file.read(reinterpret_cast<char*>(&data), dataSize);
+}
+
+// Example 10 -- Generic Serialization and Deserialization (binary final boss)
+/*
+int main()
+{
+	
+
+	return 0;
+}//*/
+
+///////////////////////
+// Additional Examples
+///////////////////////
+
+//Reading two strings in C vs C++
+/*
+#include <stdio.h>
+#include <string.h>
+int main() // C version
+{
+	FILE* file = nullptr;
+	file = fopen("lines.txt", "r+");
+	char word1[64];
+	char word2[64];
+	fscanf(file, "%s %s\n", word1);
+	return 0;
+}
+
+int main() // C++ version
+{
+	ifstream file("lines.txt");
+	string word1, word2;
+	file >> word1 >> word2;
+	return 0;
+}//*/
+
+// Using Text Instead of Binary for Objects (more work than binary cause we have to >> for each property)!
+/*
+int main()
+{
+	Entity src, dst;
+	sprintf_s(src.name, "Connor");
+	src.health = 100;
+	src.armor = 10;
+	src.damage = 25.2f;
+	src.speed = 7.5f;
+
+	fstream file("TextEntity.txt", ios::out);
+	file << src.health << " "
+		<< src.armor << " "
+		<< src.damage << " "
+		<< src.speed << endl;
+	file.close();
+
+	file = fstream("TextEntity.txt", ios::in);
+	file >> dst.health
+		>> dst.armor
+		>> dst.damage
+		>> dst.speed;
+	file.close();
+
+	return 0;
+}//*/
+
+// We can define a "macro" which replaces all instances of
+// reinterpret_cast<char*> with something simpler like ByteCast to save those precious keystrokes!
+//#define ByteCast reinterpret_cast<char*>
