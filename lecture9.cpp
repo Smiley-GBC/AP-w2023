@@ -346,7 +346,7 @@ int main()
 }//*/
 
 // Example 9 -- Multiple Objects Serialization and Deserialization
-///*
+/*
 int main()
 {
 	std::array<Entity, 10> src, dst;
@@ -373,26 +373,60 @@ int main()
 }//*/
 
 // Write data to file
-void Serialize(void* data, size_t dataSize, size_t filePosition, fstream& file)
+void Serialize(void* data, streamsize dataSize, streampos filePosition, fstream& file)
 {
 	assert(file.good());
 	file.seekp(filePosition);
-	file.write(reinterpret_cast<char*>(&data), dataSize);
+	file.write(reinterpret_cast<char*>(data), dataSize);
 }
 
 // Read data from file
-void Deserialize(void* data, size_t dataSize, size_t filePosition, fstream& file)
+void Deserialize(void* data, streamsize dataSize, streampos filePosition, fstream& file)
 {
 	assert(file.good());
 	file.seekg(filePosition);
-	file.read(reinterpret_cast<char*>(&data), dataSize);
+	file.read(reinterpret_cast<char*>(data), dataSize);
 }
 
 // Example 10 -- Generic Serialization and Deserialization (binary final boss)
-/*
+///*
 int main()
 {
-	
+	Entity src, dst;
+	sprintf_s(src.name, "Connor");
+	src.health = 100;
+	src.armor = 10;
+	src.damage = 25.2f;
+	src.speed = 7.5f;
+	fstream file;
+
+	file.open("Arbitrary.bin", ios::out | ios::binary | ios::trunc);
+	Serialize(&src, sizeof Entity, 0, file);
+	file.close();
+
+	file.open("Arbitrary.bin", ios::in | ios::binary);
+	Deserialize(&dst, sizeof Entity, 0, file);
+	file.close();
+
+	// We can read & write ANY attribute as long as the file position and data size is correct!
+	// That being said, doing so is often overkill unless the data is extremely large.
+	// For example, if an Entity was 100 megabytes but we only wanted a 10 kilobyte field, we'd need to do this.
+
+	src.speed = 999.9f;
+	file.open("Arbitrary.bin", ios::out | ios::binary | ios::trunc);
+	Serialize(&src.speed, sizeof src.speed, sizeof Entity - sizeof src.speed, file);
+	file.close();
+
+	file.open("Arbitrary.bin", ios::in | ios::binary);
+	Deserialize(&dst.speed, sizeof src.speed, sizeof Entity - sizeof src.speed, file);
+	file.close();
+
+	// P.S. The thing I meant to do in class (separate a string by spaces)
+	std::string sentence = "Programming is fun";
+	std::istringstream iss(sentence);
+	std::string word;
+	while (std::getline(iss, word, ' '))
+		std::cout << word << std::endl;
 
 	return 0;
 }//*/
