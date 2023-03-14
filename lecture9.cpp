@@ -1,9 +1,14 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <iomanip>
 #include <fstream>
 #include <sstream>
 #include <string>
 #include <array>
+#include <chrono>
+#include <thread>
+#include <algorithm>
+#include <cassert>
 using namespace std;
 
 // Example 1
@@ -150,7 +155,7 @@ int main()
 	string input;
 
 	// Open the file
-	file.open("address.txt", ios::in);
+	file.open("lines.txt", ios::in);
 	if (file.fail())
 	{
 		cout << "File open error!" << endl;
@@ -160,6 +165,7 @@ int main()
 	// Read the file and print to the screen
 	//file >> input;
 	getline(file, input);	// Default delim character is '\n'
+
 	while (!file.fail())
 	{
 		cout << input << endl;
@@ -172,6 +178,28 @@ int main()
 
 	return 0;
 }//*/
+
+// C (OG) version
+//#include <stdio.h>
+//#include <string.h>
+//int main()
+//{
+//	FILE* file = nullptr;
+//	file = fopen("lines.txt", "r+");
+//	char word1[64];
+//	char word2[64];
+//	fscanf(file, "%s %s\n", word1);
+//	return 0;
+//}
+
+// C++ version
+//int main()
+//{
+//	ifstream file("lines.txt");
+//	string word1, word2;
+//	file >> word1 >> word2;
+//	return 0;
+//}
 
 // Example 5
 /*
@@ -194,7 +222,7 @@ int main()
 	ioFile.close();
 
 	// Open the file
-	ioFile.open("rewind.txt", ios::in);
+	ioFile.open("rewind.xyz", ios::in);
 	if (!ioFile)
 	{
 		cout << "Error in opening the file";
@@ -207,6 +235,8 @@ int main()
 	{
 		cout.put(ch);
 		ioFile.get(ch);
+		//std::this_thread::sleep_for(chrono::milliseconds(50));
+		// use this if you want to look cool
 	}
 
 	// Rewind the file
@@ -234,7 +264,7 @@ int main()
 /*
 int main()
 {
-	fstream file("anything.wewant", ios::out | ios::binary);
+	fstream file("BinaryTest.bin", ios::out | ios::binary);
 	if (!file)
 	{
 		cout << "Error creating file.";
@@ -251,8 +281,7 @@ int main()
 	file.close();
 
 	// READ IN THE BINARY FILE!
-
-	file.open("anything.wewant", ios::in | ios::binary);
+	file.open("BinaryTest.bin", ios::in | ios::binary);
 	if (!file)
 	{
 		cout << "Error opening file.";
@@ -262,22 +291,24 @@ int main()
 	array<int, 10> inBuffer;
 	cout << "Reading back the data.\n";
 	file.read(reinterpret_cast<char*>(inBuffer.data()), sizeof(inBuffer));
-	std::reverse(inBuffer.begin(), inBuffer.end());
+	file.close();
 	// Its best to load everything into memory FIRST, then modify stuff
 
+	//std::reverse(inBuffer.begin(), inBuffer.end());
 	// Write out the array to the console
 	for (int i = 0; i < count; i++)
 	{
 		cout << inBuffer[i] << " ";
+		inBuffer[i] = rand() % 10;
 	}
 
-	file.close();
+	std::sort(inBuffer.begin(), inBuffer.end());
 
 	return 0;
 }
 //*/
 
-/*
+///*
 #define MAX_LENGTH 256
 struct Entity
 {
@@ -288,9 +319,48 @@ struct Entity
 	float speed;
 };
 
+void SerializeEntity(Entity& entity, size_t filePosition, fstream& file)
+{
+	assert(file.good());
+	file.seekp(filePosition);
+	file.write(reinterpret_cast<char*>(&entity), sizeof Entity);
+}
+
+void DeserializeEntity(Entity& entity, size_t filePosition, fstream& file)
+{
+	assert(file.good());
+	file.seekg(filePosition);
+	file.read(reinterpret_cast<char*>(&entity), sizeof Entity);
+}
+
+void Serialize(void* data, size_t dataSize, size_t filePosition, fstream& file)
+{
+	assert(file.good());
+	file.seekp(filePosition);
+	file.write(reinterpret_cast<char*>(&data), dataSize);
+}
+
+void Deserialize(void* data, size_t dataSize, size_t filePosition, fstream& file)
+{
+	assert(file.good());
+	file.seekg(filePosition);
+	file.read(reinterpret_cast<char*>(&data), dataSize);
+}
+
 // Example 7
+///*
 int main()
 {
+	// Field sizes
+	Entity sizeEntity;
+	int nameSize = sizeof sizeEntity.name;
+	int healthSize = sizeof sizeEntity.health;
+	int armorSize = sizeof sizeEntity.armor;
+	int damageSize = sizeof sizeEntity.damage;
+	int speedSize = sizeof sizeEntity.speed;
+	assert(nameSize + healthSize + armorSize + damageSize + speedSize == sizeof Entity);
+
+	// Single object example
 	//Entity outEntity, inEntity;
 	//sprintf_s(outEntity.name, "Connor");
 	//outEntity.health = 100;
@@ -306,6 +376,7 @@ int main()
 	//file.read(reinterpret_cast<char*>(&inEntity), sizeof Entity);
 	//file.close();
 
+	// Multi-object example
 	std::array<Entity, 10> entities;
 	for (Entity& entity : entities)
 	{
@@ -321,16 +392,33 @@ int main()
 	file.flush();
 
 	// Use random access to modify entity number 6!
-	size_t pos = sizeof Entity * 6;
-	file.seekg(pos, ios::beg);
-	entities[6].health = 200;
-	file.write(reinterpret_cast<char*>(&entities[6]), sizeof Entity);
-	file.close();
+	//size_t pos = sizeof Entity * 6;
+	//file.seekg(pos, ios::beg);
+	//entities[6].health = 200;
+	//file.write(reinterpret_cast<char*>(&entities[6]), sizeof Entity);
+	//file.close();
+	//
+	//file = fstream("Entity.bin", ios::in | ios::binary);
+	//file.seekg(pos, ios::beg);
+	//file.read(reinterpret_cast<char*>(&entities[6]), sizeof Entity);
+	//file.close();
 
-	entities[6].health = 100;
+	// Works
+	//SerializeEntity(entities[6], sizeof Entity * 6, file);
+	//entities[6].health = 200;
+	//file.close();
+	//
+	//file = fstream("Entity.bin", ios::in | ios::binary);
+	//DeserializeEntity(entities[6], sizeof Entity * 6, file);
+	//file.close();
+
+	size_t pos = sizeof Entity * 6 + nameSize;
+	Serialize(&entities[6].health, sizeof entities[6].health, pos, file);
+	file.close();
+	entities[6].health = 200;
+
 	file = fstream("Entity.bin", ios::in | ios::binary);
-	file.seekg(pos, ios::beg);
-	file.read(reinterpret_cast<char*>(&entities[6]), sizeof Entity);
+	Deserialize(&entities[6].health, sizeof entities[6].health, pos, file);
 	file.close();
 
 	// This is how we'd do things with text files
@@ -350,4 +438,5 @@ int main()
 	//file.close();
 
 	return 0;
-}//*/
+}
+//*/

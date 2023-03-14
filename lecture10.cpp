@@ -1,3 +1,4 @@
+/*
 #include <iostream>
 using namespace std;
 
@@ -165,4 +166,4 @@ int main()
 	int valueIndex = BinarySearch(arr, 0, 9, 69);
 
 	return 0;
-}
+}//*/
