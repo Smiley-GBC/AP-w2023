@@ -1,18 +1,24 @@
+#include <iostream>
+
+using namespace std;
+
 struct NumberNode
 {
 	int value = 0;
 	NumberNode* next = nullptr;
 };
 
+void Display(NumberNode* node)
+{
+	if (node != nullptr)
+	{
+		cout << node->value << endl;
+		Display(node->next);
+	}
+}
+
 int main()
 {
-	// Right-to-left initialization
-	//NumberNode* head = new NumberNode{ 3, nullptr };
-	//head = new NumberNode{ 2, head };
-	//head = new NumberNode{ 1, head };
-	//head = new NumberNode{ 0, head };
-
-	// Left-to-right initialization
 	NumberNode* head =
 		new NumberNode { 0,
 		new NumberNode { 1,
@@ -20,5 +26,12 @@ int main()
 		new NumberNode { 3 }
 	}} };
 
+	Display(head);
+
 	return 0;
 }
+
+//NumberNode* head = new NumberNode{ 3, nullptr };
+//head = new NumberNode{ 2, head };
+//head = new NumberNode{ 1, head };
+//head = new NumberNode{ 0, head };
