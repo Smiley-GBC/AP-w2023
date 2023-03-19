@@ -14,7 +14,7 @@ void ForEach(NumberNode*& node, NodeFunction function)
 {
 	if (node != nullptr)
 	{
-		NumberNode* next = node->next;
+		NumberNode*& next = node->next;
 		function(node);
 		ForEach(next, function);
 	}
@@ -38,16 +38,49 @@ public:
 	{
 		if (head == nullptr)
 		{
+			// Create the head if the list is empty
 			head = new NumberNode{ value };
 		}
 		else
 		{
+			// Otherwise, append to the end of the list (end's next is always nullptr)
 			NumberNode* node = head;
 			while (node->next != nullptr)
 			{
 				node = node->next;
 			}
 			node->next = new NumberNode{ value };
+		}
+	}
+
+	void Remove(int value)
+	{
+		// Exit if the list is empty
+		if (head == nullptr) return;
+
+		// (Note that making this a *& breaks things since we want current to be a copy)
+		NumberNode* current = head; 
+		if (head->value == value)
+		{
+			// If the head contains the value, delete it and make the next node the head 
+			head = head->next;
+			delete current;
+		}
+		else
+		{
+			// Search for the value
+			NumberNode* previous = nullptr;
+			while (current != nullptr && current->value != value)
+			{
+				previous = current;
+				current = current->next;
+			}
+			// If the value was found, assign previous to current's next
+			if (current != nullptr)
+			{
+				previous->next = current->next;
+				delete current;
+			}
 		}
 	}
 
@@ -62,6 +95,10 @@ int main()
 	numberList.Add(1);
 	numberList.Add(2);
 	numberList.Add(3);
+	numberList.Remove(3);
+	numberList.Remove(0);
+	numberList.Remove(2);
+	numberList.Remove(1);
 
 	return 0;
 }
