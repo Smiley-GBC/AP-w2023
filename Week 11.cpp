@@ -33,6 +33,24 @@ void Destroy(NumberNode*& node)
 
 class NumberList
 {
+public:
+	void Add(int value)
+	{
+		if (head == nullptr)
+		{
+			head = new NumberNode{ value };
+		}
+		else
+		{
+			NumberNode* node = head;
+			while (node->next != nullptr)
+			{
+				node = node->next;
+			}
+			node->next = new NumberNode{ value };
+		}
+	}
+
 protected:
 	NumberNode* head = nullptr;
 };
@@ -40,6 +58,10 @@ protected:
 int main()
 {
 	NumberList numberList;
+	numberList.Add(0);
+	numberList.Add(1);
+	numberList.Add(2);
+	numberList.Add(3);
 
 	return 0;
 }
