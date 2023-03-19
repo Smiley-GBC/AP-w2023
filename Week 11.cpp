@@ -8,23 +8,24 @@ struct NumberNode
 	NumberNode* next = nullptr;
 };
 
-using NodeFunction = void(*)(NumberNode*);
+using NodeFunction = void(*)(NumberNode*&);
 
-void ForEach(NumberNode* node, NodeFunction function)
+void ForEach(NumberNode*& node, NodeFunction function)
 {
 	if (node != nullptr)
 	{
+		NumberNode* next = node->next;
 		function(node);
-		ForEach(node->next, function);
+		ForEach(next, function);
 	}
 }
 
-void Display(NumberNode* node)
+void Display(NumberNode*& node)
 {
 	cout << node->value << endl;
 }
 
-void Destroy(NumberNode* node)
+void Destroy(NumberNode*& node)
 {
 	delete node;
 	node = nullptr;
