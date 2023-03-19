@@ -8,13 +8,20 @@ struct NumberNode
 	NumberNode* next = nullptr;
 };
 
-void Display(NumberNode* node)
+using NodeFunction = void(*)(NumberNode*);
+
+void ForEach(NumberNode* node, NodeFunction function)
 {
 	if (node != nullptr)
 	{
-		cout << node->value << endl;
-		Display(node->next);
+		function(node);
+		ForEach(node->next, function);
 	}
+}
+
+void Display(NumberNode* node)
+{
+	cout << node->value << endl;
 }
 
 int main()
@@ -26,7 +33,7 @@ int main()
 		new NumberNode { 3 }
 	}} };
 
-	Display(head);
+	ForEach(head, Display);
 
 	return 0;
 }
