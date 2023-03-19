@@ -24,6 +24,12 @@ void Display(NumberNode* node)
 	cout << node->value << endl;
 }
 
+void Destroy(NumberNode* node)
+{
+	delete node;
+	node = nullptr;
+}
+
 int main()
 {
 	NumberNode* head =
@@ -34,6 +40,7 @@ int main()
 	}} };
 
 	ForEach(head, Display);
+	ForEach(head, Destroy);
 
 	return 0;
 }
