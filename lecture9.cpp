@@ -389,7 +389,7 @@ void Deserialize(void* data, streamsize dataSize, streampos filePosition, fstrea
 }
 
 // Example 10 -- Generic Serialization and Deserialization (binary final boss)
-///*
+/*
 int main()
 {
 	Entity src, dst;
