@@ -6,7 +6,7 @@ void TestCpp();
 
 int main()
 {
-	TestC();
+	//TestC();
 	TestCpp();
 	return 0;
 }
@@ -15,10 +15,10 @@ void TestC()
 {
 	Node* head = nullptr;
 
-	Add(head, 0);
-	Add(head, 1);
-	Add(head, 2);
-	Add(head, 3);
+	AddSorted(head, 3);
+	AddSorted(head, 2);
+	AddSorted(head, 1);
+	AddSorted(head, 0);
 	cout << "List after add:\n";
 	ForEach(Display, head);
 
@@ -32,12 +32,12 @@ void TestC()
 
 void TestCpp()
 {
-	List list;
+	SortedList list;
 
-	list.Add(0);
-	list.Add(1);
-	list.Add(2);
 	list.Add(3);
+	list.Add(2);
+	list.Add(1);
+	list.Add(0);
 	cout << "List after add:\n";
 	list.Display();
 

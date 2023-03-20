@@ -26,6 +26,27 @@ inline void Add(Node*& head, int value)
 	}
 }
 
+// Ascending least to greatest
+inline void AddSorted(Node*& head, int value)
+{
+	if (head == nullptr || head->value >= value)
+	{
+		// Move the head if the incoming value is the lowest
+		head = new Node{ value, head };
+	}
+	else
+	{
+		// Otherwise, search for the appropriate place to insert
+		Node *previous = head, *current = head->next;
+		while (current != nullptr && current->value < value)
+		{
+			previous = current;
+			current = current->next;
+		}
+		previous->next = new Node{ value, current };
+	}
+}
+
 inline void Remove(Node*& head, int value)
 {
 	// Exit if the list is empty
