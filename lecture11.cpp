@@ -4,10 +4,21 @@
 void TestC();
 void TestCpp();
 
+template<typename T>
+struct Test
+{
+	T value;
+	Test* next = nullptr;
+};
+
 int main()
 {
+	Test<int>* head = new Test<int>{ 3, nullptr };
+	head = new Test<int>{ 2, head };
+	head = new Test<int>{ 1, head };
+	head = new Test<int>{ 0, head };
 	//TestC();
-	TestCpp();
+	//TestCpp();
 	return 0;
 }
 
