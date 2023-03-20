@@ -4,27 +4,28 @@
 void TestC();
 void TestCpp();
 
-template<typename T>
-struct Test
-{
-	T value;
-	Test* next = nullptr;
-};
+//template<typename T>
+//struct Test
+//{
+//	T value;
+//	Test* next = nullptr;
+//};
 
 int main()
 {
-	Test<int>* head = new Test<int>{ 3, nullptr };
-	head = new Test<int>{ 2, head };
-	head = new Test<int>{ 1, head };
-	head = new Test<int>{ 0, head };
-	//TestC();
+	//Test<int>* head = new Test<int>{ 3, nullptr };
+	//head = new Test<int>{ 2, head };
+	//head = new Test<int>{ 1, head };
+	//head = new Test<int>{ 0, head };
+	
+	TestC();
 	//TestCpp();
 	return 0;
 }
 
 void TestC()
 {
-	Node* head = nullptr;
+	Node<int>* head = nullptr;
 
 	AddSorted(head, 3);
 	AddSorted(head, 2);
@@ -40,6 +41,25 @@ void TestC()
 	cout << "List after remove:\n";
 	ForEach(Display, head);
 }
+
+//void TestC()
+//{
+//	Node* head = nullptr;
+//
+//	AddSorted(head, 3);
+//	AddSorted(head, 2);
+//	AddSorted(head, 1);
+//	AddSorted(head, 0);
+//	cout << "List after add:\n";
+//	ForEach(Display, head);
+//
+//	Remove(head, 3);
+//	Remove(head, 0);
+//	Remove(head, 2);
+//	Remove(head, 1);
+//	cout << "List after remove:\n";
+//	ForEach(Display, head);
+//}
 
 void TestCpp()
 {
