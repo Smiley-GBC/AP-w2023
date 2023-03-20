@@ -4,7 +4,7 @@ using namespace std;
 template<typename T>
 struct Node
 {
-	T value = 0;
+	T value{};
 	Node* next = nullptr;
 };
 

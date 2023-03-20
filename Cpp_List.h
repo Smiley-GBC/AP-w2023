@@ -1,12 +1,13 @@
 #include <iostream>
 using namespace std;
 
+template<typename T>
 class List
 {
 protected:
 	struct Node
 	{
-		int value = 0;
+		T value = 0;
 		Node* next = nullptr;
 	} *head = nullptr;
 
@@ -34,7 +35,7 @@ public:
 		ForEach(&List::display, head);
 	}
 
-	void Add(int value)
+	void Add(T value)
 	{
 		if (head == nullptr)
 		{
@@ -53,7 +54,7 @@ public:
 		}
 	}
 
-	void Remove(int value)
+	void Remove(T value)
 	{
 		// Exit if the list is empty
 		if (head == nullptr) return;
@@ -97,11 +98,13 @@ private:
 	}
 };
 
-class SortedList : public List
+/*
+template<typename T>
+class SortedList : public List<T>
 {
 public:
 	// Ascending least to greatest
-	void Add(int value)
+	void Add(T value)
 	{
 		if (head == nullptr || head->value >= value)
 		{
@@ -120,4 +123,4 @@ public:
 			previous->next = new Node{ value, current };
 		}
 	}
-};
+};//*/
