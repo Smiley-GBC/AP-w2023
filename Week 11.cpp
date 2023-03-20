@@ -2,6 +2,108 @@
 
 using namespace std;
 
+///*
+struct Node
+{
+	int value = 0;
+	Node* next = nullptr;
+};
+
+void Add(Node*& head, int value)
+{
+	if (head == nullptr)
+	{
+		// Create the head if the list is empty
+		head = new Node{ value };
+	}
+	else
+	{
+		// Otherwise, append to the end of the list (end's next is always nullptr)
+		Node* node = head;
+		while (node->next != nullptr)
+		{
+			node = node->next;
+		}
+		node->next = new Node{ value };
+	}
+}
+
+void Remove(Node*& head, int value)
+{
+	// Exit if the list is empty
+	if (head == nullptr) return;
+
+	// (Note that making this a *& breaks things since we want current to be a copy)
+	Node* current = head;
+	if (head->value == value)
+	{
+		// If the head contains the value, delete it and make the next node the head 
+		head = head->next;
+		delete current;
+	}
+	else
+	{
+		// Search for the value
+		Node* previous = nullptr;
+		while (current != nullptr && current->value != value)
+		{
+			previous = current;
+			current = current->next;
+		}
+		// If the value was found, assign previous to current's next
+		if (current != nullptr)
+		{
+			previous->next = current->next;
+			delete current;
+		}
+	}
+}
+
+using NodeFunction = void(*)(Node*&);
+
+void ForEach(NodeFunction function, Node*& node)
+{
+	if (node != nullptr)
+	{
+		Node*& next = node->next;
+		function(node);
+		ForEach(function, next);
+	}
+}
+
+void Display(Node*& node)
+{
+	cout << node->value << endl;
+}
+
+void Destroy(Node*& node)
+{
+	delete node;
+	node = nullptr;
+}
+
+int main()
+{
+	Node* head = nullptr;
+
+	Add(head, 0);
+	Add(head, 1);
+	Add(head, 2);
+	Add(head, 3);
+	cout << "List after add:\n";
+	ForEach(Display, head);
+
+	Remove(head, 3);
+	Remove(head, 0);
+	Remove(head, 2);
+	Remove(head, 1);
+	cout << "List after remove:\n";
+	ForEach(Display, head);
+
+	return 0;
+}//*/
+
+/*
 class NumberList
 {
 protected:
@@ -11,28 +113,28 @@ protected:
 		NumberNode* next = nullptr;
 	} *head = nullptr;
 
-	using NodeFunction = void(NumberList::*)(NumberNode*&);
+	using NodeMethod = void(NumberList::*)(NumberNode*&);
 
-	void ForEach(NumberNode*& node, NodeFunction function)
+	void ForEach(NodeMethod method, NumberNode*& node)
 	{
 		if (node != nullptr)
 		{
 			// https://stackoverflow.com/questions/2898316/using-a-member-function-pointer-within-a-class
 			NumberNode*& next = node->next;
-			(this->*function)(node);
-			ForEach(next, function);
+			(this->*method)(node);
+			ForEach(method, next);
 		}
 	}
 
 public:
 	~NumberList()
 	{
-		ForEach(head, &NumberList::destroy);
+		ForEach(&NumberList::destroy, head);
 	}
 
 	void Display()
 	{
-		ForEach(head, &NumberList::display);
+		ForEach(&NumberList::display, head);
 	}
 
 	void Add(int value)
@@ -117,7 +219,7 @@ int main()
 	numberList.Display();
 
 	return 0;
-}
+}//*/
 
 // Right-to-left initialization
 //NumberNode* head = new NumberNode{ 3, nullptr };
