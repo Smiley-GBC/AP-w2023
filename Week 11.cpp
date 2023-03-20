@@ -2,38 +2,39 @@
 
 using namespace std;
 
-struct NumberNode
-{
-	int value = 0;
-	NumberNode* next = nullptr;
-};
-
-using NodeFunction = void(*)(NumberNode*&);
-
-void ForEach(NumberNode*& node, NodeFunction function)
-{
-	if (node != nullptr)
-	{
-		NumberNode*& next = node->next;
-		function(node);
-		ForEach(next, function);
-	}
-}
-
-void Display(NumberNode*& node)
-{
-	cout << node->value << endl;
-}
-
-void Destroy(NumberNode*& node)
-{
-	delete node;
-	node = nullptr;
-}
-
 class NumberList
 {
+protected:
+	struct NumberNode
+	{
+		int value = 0;
+		NumberNode* next = nullptr;
+	} *head = nullptr;
+
+	using NodeFunction = void(NumberList::*)(NumberNode*&);
+
+	void ForEach(NumberNode*& node, NodeFunction function)
+	{
+		if (node != nullptr)
+		{
+			// https://stackoverflow.com/questions/2898316/using-a-member-function-pointer-within-a-class
+			NumberNode*& next = node->next;
+			(this->*function)(node);
+			ForEach(next, function);
+		}
+	}
+
 public:
+	~NumberList()
+	{
+		ForEach(head, &NumberList::destroy);
+	}
+
+	void Display()
+	{
+		ForEach(head, &NumberList::display);
+	}
+
 	void Add(int value)
 	{
 		if (head == nullptr)
@@ -84,21 +85,36 @@ public:
 		}
 	}
 
-protected:
-	NumberNode* head = nullptr;
+private:
+	void display(NumberNode*& node)
+	{
+		cout << node->value << endl;
+	}
+
+	void destroy(NumberNode*& node)
+	{
+		delete node;
+		node = nullptr;
+	}
 };
 
 int main()
 {
 	NumberList numberList;
+
 	numberList.Add(0);
 	numberList.Add(1);
 	numberList.Add(2);
 	numberList.Add(3);
+	cout << "List after add:\n";
+	numberList.Display();
+
 	numberList.Remove(3);
 	numberList.Remove(0);
 	numberList.Remove(2);
 	numberList.Remove(1);
+	cout << "List after remove:\n";
+	numberList.Display();
 
 	return 0;
 }
