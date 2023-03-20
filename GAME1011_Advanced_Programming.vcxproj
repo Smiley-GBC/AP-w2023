@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Cpp_List.h" />
+    <ClCompile Include="C_List.h" />
     <ClCompile Include="lab1.cpp" />
     <ClCompile Include="lab2.cpp" />
     <ClCompile Include="Lab2Solution.cpp" />
@@ -38,7 +40,7 @@
     <ClCompile Include="OperatorAbuse.cpp" />
     <ClCompile Include="templates.cpp" />
     <ClCompile Include="Vector2.cpp" />
-    <ClCompile Include="Week 11.cpp" />
+    <ClCompile Include="lecture11.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Array.h" />

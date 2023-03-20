@@ -99,7 +99,13 @@
     <ClCompile Include="lecture10.cpp">
       <Filter>Week 10</Filter>
     </ClCompile>
-    <ClCompile Include="Week 11.cpp">
+    <ClCompile Include="lecture11.cpp">
+      <Filter>Week 11</Filter>
+    </ClCompile>
+    <ClCompile Include="C_List.h">
+      <Filter>Week 11</Filter>
+    </ClCompile>
+    <ClCompile Include="Cpp_List.h">
       <Filter>Week 11</Filter>
     </ClCompile>
   </ItemGroup>
