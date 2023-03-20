@@ -1,3 +1,4 @@
+/*
 #include "C_List.h"
 #include "Cpp_List.h"
 
@@ -47,4 +48,4 @@ void TestCpp()
 	list.Remove(1);
 	cout << "List after remove:\n";
 	list.Display();
-}
+}//*/

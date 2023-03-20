@@ -103,9 +103,12 @@
       <Filter>Week 11</Filter>
     </ClCompile>
     <ClCompile Include="C_List.h">
-      <Filter>Week 11</Filter>
+      <Filter>Containers</Filter>
     </ClCompile>
     <ClCompile Include="Cpp_List.h">
+      <Filter>Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="lab11.cpp">
       <Filter>Week 11</Filter>
     </ClCompile>
   </ItemGroup>

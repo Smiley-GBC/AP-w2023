@@ -301,8 +301,10 @@ int main()
 	// Usually copying the entire object is enough
 	//memcpy(&dst, &src, sizeof Entity);
 
-	//Copying individual fields isn't worth it unless they're huge (like 100+ megabytes)!
-	//memcpy(reinterpret_cast<char*>(&dst) + SZ_NAME, &src.health, SZ_HEALTH);
+	// Copying individual fields isn't worth it unless they're huge (like 100+ megabytes)!
+	memcpy(&dst.health, &src.health, SZ_HEALTH);
+	// Getting the address of a property saves us the hassle of pointer arithmatic!
+	//memcpy(reinterpret_cast<char*>(&dst) + SZ_NAME, reinterpret_cast<char*>(&src) + SZ_NAME, SZ_HEALTH);
 
 	return 0;
 }//*/
@@ -422,8 +424,7 @@ int main()
 	file.close();
 
 	// P.S. The thing I meant to do in class (separate a string by spaces)
-	std::string sentence = "Programming is fun";
-	std::istringstream iss(sentence);
+	std::istringstream iss("Programming is fun");
 	std::string word;
 	while (std::getline(iss, word, ' '))
 		std::cout << word << std::endl;
