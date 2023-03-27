@@ -14,16 +14,25 @@ int main()
 	// "Underflow" is when a value is less than a minimum
 	//int data[10000000];
 	
-	//StaticStack stack(5);
-	//
-	//stack.Push(5);
-	//stack.Push(10);
-	//stack.Push(15);
-	//
-	//cout << stack.Pop() << endl;
-	//cout << stack.Pop() << endl;
-	//cout << stack.Pop() << endl;
-	//cout << stack.Pop() << endl;
+	StaticStack stack(5);
+	stack.Push(5);
+	stack.Push(10);
+	stack.Push(15);
+
+	StaticQueue queue(8);
+	queue.Enqueue(5);
+	queue.Enqueue(10);
+	queue.Enqueue(15);
+	
+	cout << "Popping stack (last in first out): " << endl;
+	cout << stack.Pop() << endl;
+	cout << stack.Pop() << endl;
+	cout << stack.Pop() << endl;
+
+	cout << "Popping queue (first in first out): " << endl;
+	cout << queue.Dequeue() << endl;
+	cout << queue.Dequeue() << endl;
+	cout << queue.Dequeue() << endl;
 
 	return 0;
 }

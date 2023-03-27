@@ -6,7 +6,10 @@ class StaticQueue
 public:
 	StaticQueue(int s)
 	{
-		queueArray = new int[s];	// Dynamically allocated array of ints of size s
+		// Dynamically allocated array of ints of size s
+		queueArray = new int[s];
+		// We can call memset to zero-initialize our dynamic array!
+		//memset(queueArray, 0, sizeof(int) * s);
 		queueSize = s;
 		front = -1;
 		rear = -1;
@@ -48,12 +51,11 @@ public:
 		}
 		else
 		{
-			int value = queueArray[front];
 			// Move front
 			front = (front + 1) % queueSize;
 			// Retrieve the front item
 			numItems--;
-			return value;
+			return queueArray[front];
 		}
 	}
 
