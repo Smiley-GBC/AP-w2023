@@ -1,6 +1,7 @@
-///*
 #pragma once
-#include <iostream>
+#include <cassert>
+
+// Dynamic queue - list implementation
 class DynamicQueue
 {
 private:
@@ -49,20 +50,12 @@ public:
 
 	int Dequeue()
 	{
-		if (IsEmpty())
-		{
-			std::cout << "The queue the empty.\n";
-			exit(1);
-			return 0;
-		}
-		else
-		{
-			int value = front->value;
-			QueueNode* temp = front;
-			front = front->next;
-			delete temp;
-			return value;
-		}
+		assert(!IsEmpty());
+		int value = front->value;
+		QueueNode* temp = front;
+		front = front->next;
+		delete temp;
+		return value;
 	}
 
 	bool IsEmpty() const
@@ -77,4 +70,4 @@ public:
 			Dequeue();
 		}
 	}
-};//*/
+};

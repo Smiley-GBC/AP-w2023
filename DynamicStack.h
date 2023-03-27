@@ -1,5 +1,7 @@
 #pragma once
-#include <iostream>
+#include <cassert>
+
+// Dynamic stack - list implementation
 class DynamicStack
 {
 private:
@@ -31,22 +33,12 @@ public:
 
 	int Pop()
 	{
-		
-
-		if (IsEmpty())
-		{
-			std::cout << "The stack is empty.\n";
-			exit(1);	// Don't do this!!! Use exception handling
-			return 0;
-		}
-		else
-		{
-			int value = top->value;
-			StackNode* temp = top;
-			top = top->next;
-			delete temp;
-			return value;
-		}
+		assert(!IsEmpty());
+		int value = top->value;
+		StackNode* temp = top;
+		top = top->next;
+		delete temp;
+		return value;
 	}
 
 	bool IsEmpty() const

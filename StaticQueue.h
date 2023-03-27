@@ -1,6 +1,7 @@
-// Static queue - array implementation
 #pragma once
-#include <iostream>
+#include <cassert>
+
+// Static queue - array implementation
 class StaticQueue
 {
 public:
@@ -24,49 +25,37 @@ public:
 	// Put something on the queue
 	void Enqueue(int value)
 	{
-		if (IsFull())
-		{
-			//cout << "The queue is full.\n";
-			exit(1);	// Don't do this
-		}
-		else
-		{
-			// Calculate the new rear position
-			rear = (rear + 1) % queueSize;	// <-- Used to wrap around a set of items -- "Array bounding"
-			// Insert the new item
-			queueArray[rear] = value;
-			// Update the item count
-			numItems++;
-		}
+		assert(!IsFull());
+
+		// Calculate the new rear position
+		rear = (rear + 1) % queueSize;
+		// Insert the new item
+		queueArray[rear] = value;
+		// Update the item count
+		numItems++;
 	}
 
 	// Take something off the queue
 	int Dequeue()
 	{
-		if (IsEmpty())
-		{
-			//cout << "The Queue is empty.\n";
-			exit(1);
-			return 0;
-		}
-		else
-		{
-			// Move front
-			front = (front + 1) % queueSize;
-			// Retrieve the front item
-			numItems--;
-			return queueArray[front];
-		}
+		assert(!IsEmpty());
+
+		// Move front
+		front = (front + 1) % queueSize;
+		// Retrieve the front item
+		numItems--;
+
+		return queueArray[front];
 	}
 
 	bool IsEmpty() const
 	{
-		return !(numItems > 0);
+		return numItems <= 0;
 	}
 
 	bool IsFull() const
 	{
-		return !(numItems < queueSize);
+		return numItems >= queueSize;
 	}
 
 	void Clear()

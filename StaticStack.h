@@ -1,13 +1,10 @@
-// Static Integer Stack (array implementation)
 #pragma once
-#include <iostream>
+#include <cassert>
+
+// Static Integer Stack (array implementation)
 class StaticStack
 {
 public:
-	// Stack Exceptions (Inner classes)
-	class Overflow {};
-	class Underflow {};
-
 	StaticStack(int capacity)
 	{
 		this->capacity = capacity;
@@ -22,14 +19,14 @@ public:
 
 	void Push(int value)
 	{
-		if (top == capacity) throw Overflow();
+		assert(top != capacity);
 		stackArray[top] = value;
 		top++;
 	}
 
 	int Pop()
 	{
-		if (IsEmpty()) throw Underflow();
+		assert(!IsEmpty());
 		top--;
 		return stackArray[top];
 	}

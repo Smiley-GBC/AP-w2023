@@ -1,8 +1,9 @@
 ///*
 #include "StaticStack.h"
-#include "DynamicStack.h"
 #include "StaticQueue.h"
+#include "DynamicStack.h"
 #include "DynamicQueue.h"
+
 #include <iostream>
 using namespace std;
 
@@ -14,25 +15,27 @@ int main()
 	// "Underflow" is when a value is less than a minimum
 	//int data[10000000];
 	
-	StaticStack stack(5);
+	StaticStack stack(3);
 	stack.Push(5);
 	stack.Push(10);
 	stack.Push(15);
 
-	StaticQueue queue(8);
+	StaticQueue queue(3);
 	queue.Enqueue(5);
 	queue.Enqueue(10);
 	queue.Enqueue(15);
 	
 	cout << "Popping stack (last in first out): " << endl;
-	cout << stack.Pop() << endl;
-	cout << stack.Pop() << endl;
-	cout << stack.Pop() << endl;
+	while (!stack.IsEmpty())
+	{
+		cout << stack.Pop() << endl;
+	}
 
-	cout << "Popping queue (first in first out): " << endl;
-	cout << queue.Dequeue() << endl;
-	cout << queue.Dequeue() << endl;
-	cout << queue.Dequeue() << endl;
+	cout << endl << "Popping queue (first in first out): " << endl;
+	while (!queue.IsEmpty())
+	{
+		cout << queue.Dequeue() << endl;
+	}
 
 	return 0;
 }
