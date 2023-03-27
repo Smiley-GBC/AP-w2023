@@ -1,6 +1,6 @@
-#pragma once
-
 // Static Integer Stack (array implementation)
+#pragma once
+#include <iostream>
 class StaticStack
 {
 public:

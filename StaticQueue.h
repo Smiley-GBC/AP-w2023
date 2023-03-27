@@ -1,7 +1,6 @@
-#pragma once
 // Static queue - array implementation
+#pragma once
 #include <iostream>
-
 class StaticQueue
 {
 public:
@@ -22,7 +21,7 @@ public:
 	// Put something on the queue
 	void Enqueue(int value)
 	{
-		if (isFull())
+		if (IsFull())
 		{
 			//cout << "The queue is full.\n";
 			exit(1);	// Don't do this
@@ -41,22 +40,37 @@ public:
 	// Take something off the queue
 	int Dequeue()
 	{
-		
+		if (IsEmpty())
+		{
+			//cout << "The Queue is empty.\n";
+			exit(1);
+			return 0;
+		}
+		else
+		{
+			int value = queueArray[front];
+			// Move front
+			front = (front + 1) % queueSize;
+			// Retrieve the front item
+			numItems--;
+			return value;
+		}
 	}
 
-	bool isEmpty() const
+	bool IsEmpty() const
 	{
-
+		return !(numItems > 0);
 	}
 
-	bool isFull() const
+	bool IsFull() const
 	{
-
+		return !(numItems < queueSize);
 	}
 
-	void clear()
+	void Clear()
 	{
-
+		front = rear = -1;
+		numItems = 0;
 	}
 
 private:

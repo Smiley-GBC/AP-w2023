@@ -48,6 +48,7 @@
   <ItemGroup>
     <ClInclude Include="Array.h" />
     <ClInclude Include="DynamicQueue.h" />
+    <ClInclude Include="DynamicStack.h" />
     <ClInclude Include="Objects.h" />
     <ClInclude Include="StaticQueue.h" />
     <ClInclude Include="StaticStack.h" />

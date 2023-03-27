@@ -1,5 +1,6 @@
+///*
 #pragma once
-/*
+#include <iostream>
 class DynamicQueue
 {
 private:
@@ -50,7 +51,7 @@ public:
 	{
 		if (IsEmpty())
 		{
-			cout << "The queue the empty.\n";
+			std::cout << "The queue the empty.\n";
 			exit(1);
 			return 0;
 		}
@@ -76,4 +77,4 @@ public:
 			Dequeue();
 		}
 	}
-};*/
+};//*/

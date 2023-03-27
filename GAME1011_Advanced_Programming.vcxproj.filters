@@ -146,5 +146,8 @@
     <ClInclude Include="StaticQueue.h">
       <Filter>Containers</Filter>
     </ClInclude>
+    <ClInclude Include="DynamicStack.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
