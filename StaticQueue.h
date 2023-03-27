@@ -48,6 +48,11 @@ public:
 		return queueArray[front];
 	}
 
+	int Front()
+	{
+		return queueArray[front + 1];
+	}
+
 	bool IsEmpty() const
 	{
 		return numItems <= 0;

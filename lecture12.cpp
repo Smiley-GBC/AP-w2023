@@ -7,6 +7,13 @@
 #include <iostream>
 using namespace std;
 
+// With great power comes great responsibility!
+void Print(int* arr, int cap, int idx, int top)
+{
+	//delete[] arr; <-- case and point
+	printf("Element at index %i has value %i\n", idx, arr[idx]);
+}
+
 int main()
 {
 	// Don't confuse "Stack Overflow" with "Overflowing a stack"
@@ -26,16 +33,30 @@ int main()
 	queue.Enqueue(15);
 	
 	cout << "Popping stack (last in first out): " << endl;
-	while (!stack.IsEmpty())
-	{
-		cout << stack.Pop() << endl;
-	}
+	stack.ForEach(Print);
+	//stack.Print();
+	//cout << stack.Top() << endl;
+	//cout << stack.Top() << endl;
+	//cout << stack.Top() << endl;
+	//cout << stack.Pop() << endl;
+	//cout << stack.Pop() << endl;
+	//cout << stack.Pop() << endl;
+	//while (!stack.IsEmpty())
+	//{
+	//	cout << stack.Pop() << endl;
+	//}
 
 	cout << endl << "Popping queue (first in first out): " << endl;
-	while (!queue.IsEmpty())
-	{
-		cout << queue.Dequeue() << endl;
-	}
+	cout << queue.Front() << endl;
+	cout << queue.Front() << endl;
+	cout << queue.Front() << endl;
+	//cout << queue.Dequeue() << endl;
+	//cout << queue.Dequeue() << endl;
+	//cout << queue.Dequeue() << endl;
+	//while (!queue.IsEmpty())
+	//{
+	//	cout << queue.Dequeue() << endl;
+	//}
 
 	return 0;
 }
