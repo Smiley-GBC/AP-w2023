@@ -40,6 +40,9 @@
     <Filter Include="Week 11">
       <UniqueIdentifier>{3a114b5d-8126-46ce-bf58-cf309fab34a4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Week 12">
+      <UniqueIdentifier>{ddaa0b50-cc9c-4bfc-8c81-22f3a340d2b5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="lab1.cpp">
@@ -111,6 +114,12 @@
     <ClCompile Include="lab11.cpp">
       <Filter>Week 11</Filter>
     </ClCompile>
+    <ClCompile Include="lecture12.cpp">
+      <Filter>Week 12</Filter>
+    </ClCompile>
+    <ClCompile Include="lab12.cpp">
+      <Filter>Week 12</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Objects.h">
@@ -126,6 +135,15 @@
       <Filter>Containers</Filter>
     </ClInclude>
     <ClInclude Include="Vector.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticStack.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicQueue.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticQueue.h">
       <Filter>Containers</Filter>
     </ClInclude>
   </ItemGroup>
