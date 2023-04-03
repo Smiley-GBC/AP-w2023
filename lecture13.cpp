@@ -64,7 +64,28 @@ void Example3BadAllocation();
 
 int main()
 {
-	Example1CustomDivision();
+	// Exceptions are fancy if-else statements,
+	// If nothing is thrown, we execute normally.
+	// Otherwise we take the catch case
+	//try
+	//{
+	//	bool good = false;
+	//	if (good)
+	//		cout << "Good" << endl;
+	//	else
+	//		throw string("Bad!");
+	//}
+	//catch (string error)
+	//{
+	//	cout << error << endl;
+	//}
+
+	// Some exceptions are built into the compiler like divide by zero, and out of memory.
+	//int input;
+	//cin >> input;
+	//int res = 1 / input;
+
+	//Example1CustomDivision();
 	//Example2CustomBounds();
 	//Example3BadAllocation();
 	return 0;
