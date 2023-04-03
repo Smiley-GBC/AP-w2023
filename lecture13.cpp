@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 
 struct Range
@@ -64,8 +65,51 @@ void Example3BadAllocation();
 
 struct Error {};
 
+void C()
+{
+	throw Error{};
+}
+
+void B()
+{
+	C();
+}
+
+// Exceptions propogated down the stack until they reach main (last line of defense)
+// Even though the exception was thrown in C, it was propogated and caught in A.
+void A()
+{
+	try
+	{
+		B();
+	}
+	catch (...)
+	{
+
+	}
+}
+
+class CustomException
+	: public exception
+{
+public:
+	CustomException() noexcept
+		: exception("Error too much c++", 1)
+	{
+	}
+};
+
 int main()
 {
+	try
+	{
+		throw CustomException{};
+	}
+	catch (CustomException error)
+	{
+		cout << error.what() << endl;
+	}
+	A();
 	// Exceptions are fancy if-else statements,
 	// If nothing is thrown, we execute normally.
 	// Otherwise we take the catch case
@@ -95,28 +139,39 @@ int main()
 	// Exceptions of said type (ie int, string, custom) must have type-specific catch blocks,
 	// otherwise they are unhandled which crashes our program as we've seen!
 	// ... is a generic type to catch any exception
-	try
-	{
-		//throw string("Bad!");
-		//throw int(5);
-		throw Error{};
-	}
-	catch (int error)
-	{
-		cout << "Caught " << error << endl;
-	}
-	catch (string error)
-	{
-		cout << "Caught " << error << endl;
-	}
-	catch (...)
-	{
-		cout << "Caught generic exception" << endl;
-	}
+	//try
+	//{
+	//	throw Error{};
+	//	throw string("Bad!");
+	//	throw int(5);
+	//}
+	//catch (int error)
+	//{
+	//	cout << "Caught " << error << endl;
+	//}
+	//catch (string error)
+	//{
+	//	cout << "Caught " << error << endl;
+	//}
+	//catch (...)
+	//{
+	//	cout << "Caught generic exception" << endl;
+	//}
+	//
+	//try
+	//{
+	//	// THIS IS ***NOT*** FINE
+	//	vector<int> v;
+	//	cout << v.at(0);
+	//}
+	//catch (...)
+	//{
+	//	cout << "Caught generic exception" << endl;
+	//}
 
 	//Example1CustomDivision();
 	//Example2CustomBounds();
-	//Example3BadAllocation();
+	Example3BadAllocation();
 	return 0;
 }
 
