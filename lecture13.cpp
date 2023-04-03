@@ -62,6 +62,8 @@ void Example1CustomDivision();
 void Example2CustomBounds();
 void Example3BadAllocation();
 
+struct Error {};
+
 int main()
 {
 	// Exceptions are fancy if-else statements,
@@ -84,6 +86,33 @@ int main()
 	//int input;
 	//cin >> input;
 	//int res = 1 / input;
+
+	// Whether its integer division, out of memory, something custom, or nothing at all,
+	// an unhandled exception will burn your program to the ground!!!
+	//throw;
+	//throw string("Bad!");
+
+	// Exceptions of said type (ie int, string, custom) must have type-specific catch blocks,
+	// otherwise they are unhandled which crashes our program as we've seen!
+	// ... is a generic type to catch any exception
+	try
+	{
+		//throw string("Bad!");
+		//throw int(5);
+		throw Error{};
+	}
+	catch (int error)
+	{
+		cout << "Caught " << error << endl;
+	}
+	catch (string error)
+	{
+		cout << "Caught " << error << endl;
+	}
+	catch (...)
+	{
+		cout << "Caught generic exception" << endl;
+	}
 
 	//Example1CustomDivision();
 	//Example2CustomBounds();
