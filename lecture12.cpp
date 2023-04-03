@@ -1,4 +1,4 @@
-///*
+/*
 #include "StaticStack.h"
 #include "StaticQueue.h"
 #include "DynamicStack.h"
