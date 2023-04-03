@@ -43,6 +43,9 @@
     <Filter Include="Week 12">
       <UniqueIdentifier>{ddaa0b50-cc9c-4bfc-8c81-22f3a340d2b5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Week 13">
+      <UniqueIdentifier>{f2fc43ea-95e3-411d-9a06-f27f7eb87a20}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="lab1.cpp">
@@ -119,6 +122,9 @@
     </ClCompile>
     <ClCompile Include="lab12.cpp">
       <Filter>Week 12</Filter>
+    </ClCompile>
+    <ClCompile Include="lecture13.cpp">
+      <Filter>Week 13</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
